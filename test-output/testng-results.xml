@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="6" passed="6" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-03-23T12:49:51 IST" name="eDepoze" finished-at="2023-03-23T12:56:13 IST" duration-ms="382367">
+    <groups>
+    </groups>
+    <test started-at="2023-03-23T12:49:51 IST" name="eDepoze" finished-at="2023-03-23T12:56:13 IST" duration-ms="382367">
+      <class name="com.edepoze.client.test.scenarios.Client_Zoom_Mediation_Session">
+        <test-method is-config="true" signature="Browserlaunch()[pri:0, instance:com.edepoze.client.test.scenarios.Client_Zoom_Mediation_Session@25ce9dc4]" started-at="2023-03-23T12:52:14 IST" name="Browserlaunch" finished-at="2023-03-23T12:52:20 IST" duration-ms="5680" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Browserlaunch -->
+        <test-method signature="ZoomMediationSession()[pri:5, instance:com.edepoze.client.test.scenarios.Client_Zoom_Mediation_Session@25ce9dc4]" started-at="2023-03-23T12:52:20 IST" name="ZoomMediationSession" finished-at="2023-03-23T12:53:23 IST" duration-ms="63337" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ZoomMediationSession -->
+        <test-method is-config="true" signature="FaildScreenshotCapture1(org.testng.ITestResult)[pri:0, instance:com.edepoze.client.test.scenarios.Client_Zoom_Mediation_Session@25ce9dc4]" started-at="2023-03-23T12:53:23 IST" name="FaildScreenshotCapture1" finished-at="2023-03-23T12:53:23 IST" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=ZoomMediationSession status=SUCCESS method=Client_Zoom_Mediation_Session.ZoomMediationSession()[pri:5, instance:com.edepoze.client.test.scenarios.Client_Zoom_Mediation_Session@25ce9dc4] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FaildScreenshotCapture1 -->
+      </class> <!-- com.edepoze.client.test.scenarios.Client_Zoom_Mediation_Session -->
+      <class name="com.edepoze.client.test.scenarios.Client_Zoom_ArbitrationSession_Creation">
+        <test-method is-config="true" signature="Browserlaunch()[pri:0, instance:com.edepoze.client.test.scenarios.Client_Zoom_ArbitrationSession_Creation@52719fb6]" started-at="2023-03-23T12:49:53 IST" name="Browserlaunch" finished-at="2023-03-23T12:50:02 IST" duration-ms="8818" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Browserlaunch -->
+        <test-method signature="ZoomArbitrationSessionCreation()[pri:0, instance:com.edepoze.client.test.scenarios.Client_Zoom_ArbitrationSession_Creation@52719fb6]" started-at="2023-03-23T12:50:02 IST" name="ZoomArbitrationSessionCreation" finished-at="2023-03-23T12:51:03 IST" duration-ms="60821" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ZoomArbitrationSessionCreation -->
+        <test-method is-config="true" signature="FaildScreenshotCapture1(org.testng.ITestResult)[pri:0, instance:com.edepoze.client.test.scenarios.Client_Zoom_ArbitrationSession_Creation@52719fb6]" started-at="2023-03-23T12:51:03 IST" name="FaildScreenshotCapture1" finished-at="2023-03-23T12:51:03 IST" duration-ms="2" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=ZoomArbitrationSessionCreation status=SUCCESS method=Client_Zoom_ArbitrationSession_Creation.ZoomArbitrationSessionCreation()[pri:0, instance:com.edepoze.client.test.scenarios.Client_Zoom_ArbitrationSession_Creation@52719fb6] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FaildScreenshotCapture1 -->
+      </class> <!-- com.edepoze.client.test.scenarios.Client_Zoom_ArbitrationSession_Creation -->
+      <class name="com.edepoze.client.test.scenarios.Client_Zoom_TrialSession_Creation">
+        <test-method is-config="true" signature="Browserlaunch()[pri:0, instance:com.edepoze.client.test.scenarios.Client_Zoom_TrialSession_Creation@74ea2410]" started-at="2023-03-23T12:53:23 IST" name="Browserlaunch" finished-at="2023-03-23T12:53:31 IST" duration-ms="7934" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Browserlaunch -->
+        <test-method signature="ZoomTrialSessionCreation()[pri:0, instance:com.edepoze.client.test.scenarios.Client_Zoom_TrialSession_Creation@74ea2410]" started-at="2023-03-23T12:53:31 IST" name="ZoomTrialSessionCreation" finished-at="2023-03-23T12:54:35 IST" duration-ms="63819" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ZoomTrialSessionCreation -->
+        <test-method is-config="true" signature="FaildScreenshotCapture1(org.testng.ITestResult)[pri:0, instance:com.edepoze.client.test.scenarios.Client_Zoom_TrialSession_Creation@74ea2410]" started-at="2023-03-23T12:54:35 IST" name="FaildScreenshotCapture1" finished-at="2023-03-23T12:54:35 IST" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=ZoomTrialSessionCreation status=SUCCESS method=Client_Zoom_TrialSession_Creation.ZoomTrialSessionCreation()[pri:0, instance:com.edepoze.client.test.scenarios.Client_Zoom_TrialSession_Creation@74ea2410] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FaildScreenshotCapture1 -->
+      </class> <!-- com.edepoze.client.test.scenarios.Client_Zoom_TrialSession_Creation -->
+      <class name="com.edepoze.client.test.scenarios.Client_Zoom_Deposition_Sessions_Creation">
+        <test-method is-config="true" signature="Browserlaunch()[pri:0, instance:com.edepoze.client.test.scenarios.Client_Zoom_Deposition_Sessions_Creation@173ed316]" started-at="2023-03-23T12:51:03 IST" name="Browserlaunch" finished-at="2023-03-23T12:51:11 IST" duration-ms="8119" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Browserlaunch -->
+        <test-method signature="ZoomDepositionSessionCreation()[pri:1, instance:com.edepoze.client.test.scenarios.Client_Zoom_Deposition_Sessions_Creation@173ed316]" started-at="2023-03-23T12:51:11 IST" name="ZoomDepositionSessionCreation" finished-at="2023-03-23T12:52:14 IST" duration-ms="63078" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ZoomDepositionSessionCreation -->
+        <test-method is-config="true" signature="FaildScreenshotCapture1(org.testng.ITestResult)[pri:0, instance:com.edepoze.client.test.scenarios.Client_Zoom_Deposition_Sessions_Creation@173ed316]" started-at="2023-03-23T12:52:14 IST" name="FaildScreenshotCapture1" finished-at="2023-03-23T12:52:14 IST" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=ZoomDepositionSessionCreation status=SUCCESS method=Client_Zoom_Deposition_Sessions_Creation.ZoomDepositionSessionCreation()[pri:1, instance:com.edepoze.client.test.scenarios.Client_Zoom_Deposition_Sessions_Creation@173ed316] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FaildScreenshotCapture1 -->
+      </class> <!-- com.edepoze.client.test.scenarios.Client_Zoom_Deposition_Sessions_Creation -->
+      <class name="com.edepoze.client.test.scenarios.Client_Case_Sessions_Page_Sorting">
+        <test-method is-config="true" signature="Browserlaunch()[pri:0, instance:com.edepoze.client.test.scenarios.Client_Case_Sessions_Page_Sorting@76b1e9b8]" started-at="2023-03-23T12:55:49 IST" name="Browserlaunch" finished-at="2023-03-23T12:55:56 IST" duration-ms="7050" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Browserlaunch -->
+        <test-method signature="ClienCaseSessionsPageSorting()[pri:0, instance:com.edepoze.client.test.scenarios.Client_Case_Sessions_Page_Sorting@76b1e9b8]" started-at="2023-03-23T12:55:56 IST" name="ClienCaseSessionsPageSorting" finished-at="2023-03-23T12:56:13 IST" duration-ms="16961" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ClienCaseSessionsPageSorting -->
+        <test-method is-config="true" signature="FaildScreenshotCapture1(org.testng.ITestResult)[pri:0, instance:com.edepoze.client.test.scenarios.Client_Case_Sessions_Page_Sorting@76b1e9b8]" started-at="2023-03-23T12:56:13 IST" name="FaildScreenshotCapture1" finished-at="2023-03-23T12:56:13 IST" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=ClienCaseSessionsPageSorting status=SUCCESS method=Client_Case_Sessions_Page_Sorting.ClienCaseSessionsPageSorting()[pri:0, instance:com.edepoze.client.test.scenarios.Client_Case_Sessions_Page_Sorting@76b1e9b8] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FaildScreenshotCapture1 -->
+      </class> <!-- com.edepoze.client.test.scenarios.Client_Case_Sessions_Page_Sorting -->
+      <class name="com.edepoze.client.test.scenarios.Client_Zoom_WitnessPrep_Session_Creation">
+        <test-method is-config="true" signature="Browserlaunch()[pri:0, instance:com.edepoze.client.test.scenarios.Client_Zoom_WitnessPrep_Session_Creation@17f62e33]" started-at="2023-03-23T12:54:35 IST" name="Browserlaunch" finished-at="2023-03-23T12:54:42 IST" duration-ms="7206" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Browserlaunch -->
+        <test-method signature="ZoomWitnessPrepSessionCreation()[pri:0, instance:com.edepoze.client.test.scenarios.Client_Zoom_WitnessPrep_Session_Creation@17f62e33]" started-at="2023-03-23T12:54:42 IST" name="ZoomWitnessPrepSessionCreation" finished-at="2023-03-23T12:55:49 IST" duration-ms="67235" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ZoomWitnessPrepSessionCreation -->
+        <test-method is-config="true" signature="FaildScreenshotCapture1(org.testng.ITestResult)[pri:0, instance:com.edepoze.client.test.scenarios.Client_Zoom_WitnessPrep_Session_Creation@17f62e33]" started-at="2023-03-23T12:55:49 IST" name="FaildScreenshotCapture1" finished-at="2023-03-23T12:55:49 IST" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=ZoomWitnessPrepSessionCreation status=SUCCESS method=Client_Zoom_WitnessPrep_Session_Creation.ZoomWitnessPrepSessionCreation()[pri:0, instance:com.edepoze.client.test.scenarios.Client_Zoom_WitnessPrep_Session_Creation@17f62e33] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FaildScreenshotCapture1 -->
+      </class> <!-- com.edepoze.client.test.scenarios.Client_Zoom_WitnessPrep_Session_Creation -->
+    </test> <!-- eDepoze -->
+  </suite> <!-- eDepoze -->
+</testng-results>

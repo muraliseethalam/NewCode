@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="eDepoze">
+	<test name="eDepoze">
+		<listeners>
+			<listener class-name="com.edepoze.utilitifiles.ExtentReport" />
+		</listeners>
+		<classes>
+		
+		  <!-- <class name="com.edepoze.reseller.test.scenarios.Reseller_Login" />
+			<class name="com.edepoze.reseller.test.scenarios.Reseller_Add_Enterprise" /> 
+			<class name="com.edepoze.reseller.test.scenarios.Reseller_Enterprise_Mail_Password_Setup" />
+			<class name="com.edepoze.reseller.test.scenarios.Reseller_Enterprise_Accounts_Delete" />
+			<class name="com.edepoze.reseller.test.scenarios.Reseller_Add_Client" />
+			<class name="com.edepoze.reseller.test.scenarios.Reseller_Client_Mail_Password_Setup" />
+			<class name="com.edepoze.reseller.test.scenarios.Reseller_Clients_Account_Activate_Deactivate" />
+			<class name="com.edepoze.reseller.test.scenarios.Reseller_Home_Page_Sorting_Test" />-->
+			
+			
+		    
+		    <!--  Dont run below three test scenarios
+		    <class name="com.edepoze.reseller.test.scenarios.Reseller_Add_Multiple_Client_For_PaginationTesting" />
+			<class name="com.edepoze.reseller.test.scenarios.Reseller_Add_Multiple_Client_For_PaginationTesting" />
+			<class name="com.edepoze.reseller.test.scenarios.Reseller_Home_Page_Pagination" />
+			
+			<class name="com.edepoze.client.test.scenarios.Client_Login" />
+			<class name="com.edepoze.client.test.scenarios.Client_Add_New_Case" />
+			<class name="com.edepoze.client.test.scenarios.Client_Case_Edit" />
+			<class name="com.edepoze.client.test.scenarios.Client_Home_Page_Sorting" />
+			<class name="com.edepoze.client.test.scenarios.Client_Case_Delete" />
+			
+			<class name="com.edepoze.client.test.scenarios.Client_Non_Zoom_ArbitrationSession_Creation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Non_Zoom_DepositionSession_Creation" />
+		    <class name="com.edepoze.client.test.scenarios.Client_Non_Zoom_MediationSession_Creation" />
+		    <class name="com.edepoze.client.test.scenarios.Client_Non_Zoom_TrialSession_Creation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Non_Zoom_WitnessPrepSession_Creation" />-->
+			
+			<class name="com.edepoze.client.test.scenarios.Client_Zoom_ArbitrationSession_Creation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Zoom_Deposition_Sessions_Creation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Zoom_Mediation_Session" />
+			<class name="com.edepoze.client.test.scenarios.Client_Zoom_TrialSession_Creation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Zoom_WitnessPrep_Session_Creation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Case_Sessions_Page_Sorting" />
+			
+			  <!--<class name="com.edepoze.client.test.scenarios.Client_Case_Sessions_Delete_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Add_New_Case_For_Documents_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Case_Session_Documnets_Copy_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Case_Session_Documnets_Move_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Case_Session_Documnets_Delete_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Case_Session_Single_Document_Download_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Case_Session_Multiple_Documents_Download_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Add_New_Session_For_Folder_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Case_Session_Folder_Copy_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Case_Session_Folder_Move_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Case_Session_Folder_Delete_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Case_Session_Folder_Download_Validation" />	
+			
+			
+			<class name="com.edepoze.client.test.scenarios.Client_Add_Multiple_Folders_For_CaseFolder_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Case_Folder_Documents_Reflect_Sessions_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Case_Folder_Documents_Copy_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Case_Folder_Documents_Move_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Case_Folder_Documents_Delete_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Case_Folder_Single_Document_Download_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Case_Folder_Multiple_Document_Download_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Folder_Of_Case_Folder_Copy_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Folder_Of_Case_Folder_Move_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Folder_Of_Case_Folder_Delete_Validation" />
+			<class name="com.edepoze.client.test.scenarios.Client_Folder_Of_Case_Folder_Download_Validation" />
+			
+			
+			
+			<class name="com.edepoze.webapp.test.scenarios.WebApp_Member_Login"/>
+			<class name="com.edepoze.webapp.test.scenarios.Validating_Client_Case_Session_Folders_And_Member_Case_Sessions_Folders_Same_Or_Not"/>
+			<class name="com.edepoze.webapp.test.scenarios.Validating_Client_And_Member_Sessions_Same_Or_Not"/>
+			<class name="com.edepoze.webapp.test.scenarios.Validating_Client_And_Member_Cases_Same_Or_Not"/>
+			<class name="com.edepoze.webapp.test.scenarios.Validating_Annotations"/>
+			<class name="com.edepoze.webapp.test.scenarios.Member_Email_Validation"/>
+			<class name="com.edepoze.webapp.test.scenarios.Member_CaseSession_Documents_Download_Validation"/>
+			<class name="com.edepoze.webapp.test.scenarios.CaseSession_ID_And_Password_Validation"/>
+			<class name="com.edepoze.webapp.test.scenarios.CaseSession_Folder_Documents_Validation"/>
+			<class name="com.edepoze.webapp.test.scenarios.CaseSession_All_Files_Validation"/>
+			<class name="com.edepoze.webapp.test.scenarios.Member_Cases_Sorting"/>
+			<class name="com.edepoze.webapp.test.scenarios.Member_Case_Sessions_Folders_Sorting"/>
+			<class name="com.edepoze.webapp.test.scenarios.Member_Case_Sessions_Type_Sorting"/>
+			<class name="com.edepoze.webapp.test.scenarios.Member_CaseNumbers_Sorting"/>
+			<class name="com.edepoze.webapp.test.scenarios.Browse_Files_By_Clicking_Arrow_In_The_Left_Side_Arrow"/>
+			<class name="com.edepoze.webapp.test.scenarios.Member_Join"/>
+			<class name="com.edepoze.webapp.test.scenarios.Member_Join_Active_Seesion"/> 
+			
+			
+			
+			<class name="com.edepoze.webapp.test.scenarios.Non_Zoom_Deposition_Session_With_Witness"/>
+			<class name="com.edepoze.webapp.test.scenarios.Non_Zoom_WitnessPrep_Session_With_Witness"/>
+			<class name="com.edepoze.webapp.test.scenarios.Non_Zoom_Trial_Session_With_Witness"/>
+			<class name="com.edepoze.webapp.test.scenarios.Non_Zoom_Mediation_Session_With_Witness"/>
+			<class name="com.edepoze.webapp.test.scenarios.Non_Zoom_Arbitration_Session_With_Witness"/>
+			<class name="com.edepoze.webapp.test.scenarios.Non_Zoom_Deposition_Session_With_Witness_And_Guest"/>
+			<class name="com.edepoze.webapp.test.scenarios.Non_Zoom_WitnessPrep_Session_With_Witness_And_Guest" />-->
+		
+		</classes>
+	</test>
+</suite>

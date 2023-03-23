@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [eDepoze]">
+  <listeners>
+    <listener class-name="com.edepoze.utilitifiles.ExtentReport"/>
+  </listeners>
+  <test thread-count="5" name="eDepoze(failed)">
+    <classes>
+      <class name="com.edepoze.webapp.test.scenarios.Non_Zoom_Mediation_Session_With_Witness">
+        <methods>
+          <include name="quit"/>
+          <include name="MediationSessionWithWitness"/>
+          <include name="FaildScreenshotCapture1"/>
+          <include name="Browserlaunch"/>
+        </methods>
+      </class> <!-- com.edepoze.webapp.test.scenarios.Non_Zoom_Mediation_Session_With_Witness -->
+      <class name="com.edepoze.webapp.test.scenarios.Non_Zoom_Arbitration_Session_With_Witness">
+        <methods>
+          <include name="quit"/>
+          <include name="FaildScreenshotCapture1"/>
+          <include name="Browserlaunch"/>
+          <include name="ArbitrationSessionWithWitness"/>
+        </methods>
+      </class> <!-- com.edepoze.webapp.test.scenarios.Non_Zoom_Arbitration_Session_With_Witness -->
+      <class name="com.edepoze.webapp.test.scenarios.Non_Zoom_Trial_Session_With_Witness">
+        <methods>
+          <include name="quit"/>
+          <include name="TrailSessionWithWitness"/>
+          <include name="FaildScreenshotCapture1"/>
+          <include name="Browserlaunch"/>
+        </methods>
+      </class> <!-- com.edepoze.webapp.test.scenarios.Non_Zoom_Trial_Session_With_Witness -->
+      <class name="com.edepoze.webapp.test.scenarios.Non_Zoom_WitnessPrep_Session_With_Witness">
+        <methods>
+          <include name="quit"/>
+          <include name="WitnessPrepSessionWithWitness"/>
+          <include name="FaildScreenshotCapture1"/>
+          <include name="Browserlaunch"/>
+        </methods>
+      </class> <!-- com.edepoze.webapp.test.scenarios.Non_Zoom_WitnessPrep_Session_With_Witness -->
+      <class name="com.edepoze.webapp.test.scenarios.Non_Zoom_WitnessPrep_Session_With_Witness_And_Guest">
+        <methods>
+          <include name="quit"/>
+          <include name="WitnessPrepSessionWithWitnessAndGuest"/>
+          <include name="FaildScreenshotCapture1"/>
+          <include name="Browserlaunch"/>
+        </methods>
+      </class> <!-- com.edepoze.webapp.test.scenarios.Non_Zoom_WitnessPrep_Session_With_Witness_And_Guest -->
+      <class name="com.edepoze.webapp.test.scenarios.Non_Zoom_Deposition_Session_With_Witness_And_Guest">
+        <methods>
+          <include name="DepositionSessionWithWitnessAndGuest"/>
+          <include name="quit"/>
+          <include name="FaildScreenshotCapture1"/>
+          <include name="Browserlaunch"/>
+        </methods>
+      </class> <!-- com.edepoze.webapp.test.scenarios.Non_Zoom_Deposition_Session_With_Witness_And_Guest -->
+      <class name="com.edepoze.webapp.test.scenarios.Non_Zoom_Deposition_Session_With_Witness">
+        <methods>
+          <include name="quit"/>
+          <include name="DepositionSessionWithWitness"/>
+          <include name="FaildScreenshotCapture1"/>
+          <include name="Browserlaunch"/>
+        </methods>
+      </class> <!-- com.edepoze.webapp.test.scenarios.Non_Zoom_Deposition_Session_With_Witness -->
+    </classes>
+  </test> <!-- eDepoze(failed) -->
+</suite> <!-- Failed suite [eDepoze] -->
