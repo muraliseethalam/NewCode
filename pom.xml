@@ -35,8 +35,6 @@
 	</build>
 
 
-
-
 	<!-- Dependencies required for Project -->
 
 	<dependencies>
@@ -141,10 +139,10 @@
 		</dependency>
 		<!-- You can remove below dependency-->
 		<dependency>
-    <groupId>com.asprise.ocr</groupId>
-    <artifactId>java-ocr-api</artifactId>
-    <version>15.3.0.3</version>
-</dependency>
+			<groupId>com.asprise.ocr</groupId>
+			<artifactId>java-ocr-api</artifactId>
+			<version>15.3.0.3</version>
+		</dependency>
 
 
 		<!-- https://mvnrepository.com/artifact/org.teamcontrolium/utilities -->
@@ -153,8 +151,18 @@
 			<artifactId>utilities</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-		
-		
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.17.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>com.google.apis</groupId>

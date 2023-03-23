@@ -7,6 +7,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import com.microsoft.edge.seleniumtools.EdgeDriver;
 import com.microsoft.edge.seleniumtools.EdgeOptions;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -21,15 +23,21 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.safari.SafariDriver;
 
+
 public class BaseClass {
 	public static WebDriver driver;
 	WebDriver Incognitodriver;
 	WebDriver Firefoxdriver;
+	public static Logger logger;
 	@BeforeMethod
 //	LaunchingThe Respective Browser
 	public void Browserlaunch() throws Exception {
 		ReadConfigPropertiesFile readconfig = new ReadConfigPropertiesFile();
 		String Environment = readconfig.BrowserName();
+		
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
+		logger.info("Borwser launched");
 
 		if (Environment.contentEquals("chrome")) {
 			ChromeOptions options = new ChromeOptions();

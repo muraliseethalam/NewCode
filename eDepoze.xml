@@ -6,9 +6,9 @@
 		</listeners>
 		<classes>
 		
-		  <!-- <class name="com.edepoze.reseller.test.scenarios.Reseller_Login" />
-			<class name="com.edepoze.reseller.test.scenarios.Reseller_Add_Enterprise" /> 
-			<class name="com.edepoze.reseller.test.scenarios.Reseller_Enterprise_Mail_Password_Setup" />
+		   <class name="com.edepoze.reseller.test.scenarios.Reseller_Login" />
+			 <class name="com.edepoze.reseller.test.scenarios.Reseller_Add_Enterprise" /> 
+			<!--<class name="com.edepoze.reseller.test.scenarios.Reseller_Enterprise_Mail_Password_Setup" />
 			<class name="com.edepoze.reseller.test.scenarios.Reseller_Enterprise_Accounts_Delete" />
 			<class name="com.edepoze.reseller.test.scenarios.Reseller_Add_Client" />
 			<class name="com.edepoze.reseller.test.scenarios.Reseller_Client_Mail_Password_Setup" />
@@ -20,9 +20,9 @@
 		    <!--  Dont run below three test scenarios
 		    <class name="com.edepoze.reseller.test.scenarios.Reseller_Add_Multiple_Client_For_PaginationTesting" />
 			<class name="com.edepoze.reseller.test.scenarios.Reseller_Add_Multiple_Client_For_PaginationTesting" />
-			<class name="com.edepoze.reseller.test.scenarios.Reseller_Home_Page_Pagination" />
+			<class name="com.edepoze.reseller.test.scenarios.Reseller_Home_Page_Pagination" />-->
 			
-			<class name="com.edepoze.client.test.scenarios.Client_Login" />
+		 <!-- 	<class name="com.edepoze.client.test.scenarios.Client_Login" />
 			<class name="com.edepoze.client.test.scenarios.Client_Add_New_Case" />
 			<class name="com.edepoze.client.test.scenarios.Client_Case_Edit" />
 			<class name="com.edepoze.client.test.scenarios.Client_Home_Page_Sorting" />
@@ -32,7 +32,7 @@
 			<class name="com.edepoze.client.test.scenarios.Client_Non_Zoom_DepositionSession_Creation" />
 		    <class name="com.edepoze.client.test.scenarios.Client_Non_Zoom_MediationSession_Creation" />
 		    <class name="com.edepoze.client.test.scenarios.Client_Non_Zoom_TrialSession_Creation" />
-			<class name="com.edepoze.client.test.scenarios.Client_Non_Zoom_WitnessPrepSession_Creation" />-->
+			<class name="com.edepoze.client.test.scenarios.Client_Non_Zoom_WitnessPrepSession_Creation" />
 			
 			<class name="com.edepoze.client.test.scenarios.Client_Zoom_ArbitrationSession_Creation" />
 			<class name="com.edepoze.client.test.scenarios.Client_Zoom_Deposition_Sessions_Creation" />
@@ -41,7 +41,7 @@
 			<class name="com.edepoze.client.test.scenarios.Client_Zoom_WitnessPrep_Session_Creation" />
 			<class name="com.edepoze.client.test.scenarios.Client_Case_Sessions_Page_Sorting" />
 			
-			  <!--<class name="com.edepoze.client.test.scenarios.Client_Case_Sessions_Delete_Validation" />
+			  <class name="com.edepoze.client.test.scenarios.Client_Case_Sessions_Delete_Validation" />
 			<class name="com.edepoze.client.test.scenarios.Client_Add_New_Case_For_Documents_Validation" />
 			<class name="com.edepoze.client.test.scenarios.Client_Case_Session_Documnets_Copy_Validation" />
 			<class name="com.edepoze.client.test.scenarios.Client_Case_Session_Documnets_Move_Validation" />

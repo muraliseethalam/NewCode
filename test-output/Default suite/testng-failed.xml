@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.edepoze.client.test.scenarios.Client_Zoom_ArbitrationSession_Creation">
+      <class name="com.edepoze.reseller.test.scenarios.Reseller_Login">
         <methods>
-          <include name="ZoomArbitrationSessionCreation"/>
+          <include name="Resellerlogin"/>
           <include name="Browserlaunch"/>
           <include name="FaildScreenshotCapture1"/>
         </methods>
-      </class> <!-- com.edepoze.client.test.scenarios.Client_Zoom_ArbitrationSession_Creation -->
+      </class> <!-- com.edepoze.reseller.test.scenarios.Reseller_Login -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

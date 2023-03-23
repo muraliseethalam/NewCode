@@ -1,21 +1,26 @@
 package com.edepoze.reseller.pageobjects;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-
 import com.edepoze.utilitifiles.OutputData;
 import com.edepoze.utilitifiles.ReadConfigPropertiesFile;
 import com.edepoze.utilitifiles.Screenshots;
 
 // Reseller Login
 public class Reseller_Login_PageObjects {
-
+	
+	public static Logger logger;
+	
 	OutputData obj=new OutputData();
+	
 	//	eDepoze_Read_Config_File out=new eDepoze_Read_Config_File();
 	ReadConfigPropertiesFile readconfig=new ReadConfigPropertiesFile();
-
+	
+	
+	
 	WebDriver driver;
 	By UserName = By.name("username");
 	By Password = By.name("password");
@@ -28,12 +33,15 @@ public class Reseller_Login_PageObjects {
 
 	public Reseller_Login_PageObjects(WebDriver driver) {
 		this.driver = driver;
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
+//		logger.info("Borwser launched");
 	}
 	public void EnterNewPassword() throws Exception {
 		driver.findElement(NewPassword).sendKeys(OutputData.EnterClientPassword());
+		logger.info("Borwser launched");
 	}
 	public void ClickOnSave() throws Exception {
-		driver.findElement(ClickOnSave).click();
 	}
 	public void EnterConfirmPassword() throws Exception {
 		driver.findElement(ConfirmPassword).sendKeys(OutputData.EnterClientPassword());
@@ -53,12 +61,14 @@ public class Reseller_Login_PageObjects {
 	}
 
 	public void EnterUsername() throws Exception {
-		driver.findElement(UserName).sendKeys(readconfig.ResellerUsername());
 		
+		driver.findElement(UserName).sendKeys(readconfig.ResellerUsername());
+		logger.info("Username Entered");
 	}
 	public void EnterPassword() throws Exception {
 		Thread.sleep(2000);
 		driver.findElement(Password).sendKeys(readconfig.ResellerPassword());
+		logger.info("Password Entered ");
 	}
 
 	public void Getpassword() throws Exception {
@@ -73,6 +83,7 @@ public class Reseller_Login_PageObjects {
 
 	public void ClickOnLogin() throws InterruptedException {
 		driver.findElement(Login).click();
+		logger.info("Clicked the login button");
 	}
 	public void ForgotPassword() {
 		driver.findElement(ForgotPassword).click();
@@ -92,7 +103,7 @@ public class Reseller_Login_PageObjects {
 			System.out.println("Reseller Login Failed");
 		}
 
-
+		logger.info("Reseller logedin successfully");
 
 	}
 
