@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -27,6 +30,7 @@ import com.edepoze.utilitifiles.Screenshots;
 // Zoom Session Creation
 public class Client_Zoom_Sessions_Creations_PageObjects_PageObjects {
 
+	public static Logger logger;
 	WebDriver driver;
 	
 
@@ -74,111 +78,164 @@ public class Client_Zoom_Sessions_Creations_PageObjects_PageObjects {
 
 	public void EnterDepositonName() throws Exception {
 		Thread.sleep(2000);
-		driver.findElement(EnterDepositionName).sendKeys("MAT AFolder Validation");;		
+		driver.findElement(EnterDepositionName).sendKeys("MAT AFolder Validation");;	
+		logger.info("Entered session name");
+
 	}
 
 	public void ClickOnMediation() throws Exception {
 		Thread.sleep(2000);
-		driver.findElement(ClickOnMediation).click();		
+		driver.findElement(ClickOnMediation).click();	
+		logger.info("Clicked on mediation");
+
 	}
 
 	public void ClickOnTrial() throws Exception {
 		Thread.sleep(2000);
-		driver.findElement(ClickOnTrial).click();		
+		driver.findElement(ClickOnTrial).click();	
+		logger.info("Clicked on trail");
+
 	}
 	public void ClickOnArbitration() throws Exception {
 		Thread.sleep(2000);
 		driver.findElement(ClickOnArbitration).click();		
+		logger.info("Clicked on arbitration");
+
 	}
 	public void ClickOnEmail1() throws Exception {
 		Thread.sleep(2000);
 		driver.findElement(ClickOnEmail1).click();
+		logger.info("Clicked on email - 1");
+
+		
 	}
 	public void ClickOnEmail2() throws Exception {
 		Thread.sleep(2000);
 		driver.findElement(ClickOnEmail2).click();
+		logger.info("Clicked on email - 2");
+
 	}
 	public void ClickOnEmail3() throws Exception {
 		Thread.sleep(2000);
 		driver.findElement(ClickOnEmail3).click();
+		logger.info("Clicked on email - 3");
+
 	}
 	public void ClickOnEmail4() throws Exception {
 		Thread.sleep(2000);
 		driver.findElement(ClickOnEmail4).click();
+		logger.info("Clicked on email - 4");
+
 	}
 	public void ClickOnWitnessPrep() throws Exception {
 		Thread.sleep(2000);
 		driver.findElement(ClickOnWitnessPrep).click();		
+		logger.info("Clicked on witness prep");
+
 	}
 	public void ClickOnSignIn() throws Exception {
 		Thread.sleep(2000);
 		driver.findElement(ClickOnSignIn).click();	
+		logger.info("Clicked on signin");
+
 	}
 	public void ClickOnNext() throws Exception {
 		Thread.sleep(2000);
 		driver.findElement(ClickOnNext).click();
+		logger.info("Clicked on next");
+
 	}
 	public void SearchEmail() throws Exception {
 		Thread.sleep(2000);
 		driver.findElement(SearchEmail).sendKeys("noreply@edepoze.com", Keys.ENTER);
+		logger.info("Searched email");
+
 	}
 	public void ClickOnEmail() throws Exception {
 		Thread.sleep(2000);
 		driver.findElement(ClickOnEmail).click();
+		logger.info("Clicked on email");
+
 	}
 	public void ClickOnCase() throws InterruptedException {
 		Thread.sleep(2000);
 		driver.findElement(ClickOnCase).click();	
+		logger.info("Clicked on case");
+
 	}
 	public void ClickOnAddSession() throws InterruptedException {
 		Thread.sleep(2000);
 		driver.findElement(ClickOnAddSession).click();	
+		logger.info("Clicked on Add Session Button");
+
 	}
 	public void ClickOnDeposition() throws InterruptedException {
 		Thread.sleep(2000);
 		driver.findElement(ClickOnDeposition).click();	
+		logger.info("Clicked on deposition");
+
 	}
 	public void ClearDepositionName() throws InterruptedException {
 
 		driver.findElement(EnterDepositionName).clear();	
+		logger.info("Cleared session name");
+
 	}
 	public void EnterTrialName() throws InterruptedException {
 
 		driver.findElement(EnterDepositionName).sendKeys("MAT Trial Session Zoom");	
+		logger.info("Entered trail session name");
+
 	}
 	public void EnterDepositionName() throws InterruptedException {
 
 		driver.findElement(EnterDepositionName).sendKeys("MAT Deposition Session Zoom");	
+		logger.info("Entered deposition session name");
+
 	}
 	public void EnterWitnessPrepnName() throws InterruptedException {
 
 		driver.findElement(EnterDepositionName).sendKeys("MAT WitnessPrep Session Zoom");	
+		logger.info("Entered WitnessPrep session name");
+
 	}
 	public void EnterArbitrationName() throws InterruptedException {
 
 		driver.findElement(EnterDepositionName).sendKeys("MAT Arbitration Session Zoom");	
+		logger.info("Entered arbitration session name");
+
 	}
 	public void EnterMediationnName() throws InterruptedException {
 
 		driver.findElement(EnterDepositionName).sendKeys("MAT Mediation Session Zoom");	
+		logger.info("Entered mediation session name");
+
 	}
 
 	public void Entervolume() throws InterruptedException {
 
 		driver.findElement(Entervolume).sendKeys("2");	
+		logger.info("Entered volume");
+
 	}
 	public void SearchIntroducingPartyName() throws Exception {
 		Thread.sleep(1000);
 		driver.findElement(SearchIntroducingPartyName).sendKeys(OutputData.RegisterEmailId());	
+		logger.info("Searched introducing party name");
+
 	}
 	public void AgainSearchIntroducingPartyName() throws Exception {
 		Thread.sleep(1000);
 		driver.findElement(SearchIntroducingPartyName).sendKeys("hgf");	
+		logger.info("Again searched introducing party name");
+
 	}
 
 	public void ClickOnIntroducingPartyName() throws InterruptedException {
 		Thread.sleep(1000);
 		driver.findElement(ClickOnIntroducingPartyName).click();
+		logger.info("Cliked on introducing party name");
+
 	}
 	public void SelectOnCourtReportingFirmName() throws InterruptedException {
 		Thread.sleep(1000);
@@ -186,36 +243,52 @@ public class Client_Zoom_Sessions_Creations_PageObjects_PageObjects {
 		Thread.sleep(1000);
 		Select select =new Select(coutry);
 		select.selectByVisibleText(readconfig.CourtReportingFirmName());
+		logger.info("Selected court reporting firm name");
+
 	}
 	public void EnterLocation() throws InterruptedException {
 //System.out.println("Test");
 		driver.findElement(EnterLocation).sendKeys("New York");
+		logger.info("Entered location");
+
 		
 	}
 	public void ScrollDown() throws InterruptedException {
 		Thread.sleep(1000);
 		JavascriptExecutor js=(JavascriptExecutor)driver;
 		js.executeScript("window.scrollBy(0,1000)");
+		logger.info("Scrolled down");
+
 	}
 	public void ClearSessionPasscode() throws InterruptedException {
 
 		driver.findElement(ClearSessionPasscode).clear();
+		logger.info("Cleared session passcode");
+
 	}
 	public void EnterSessionPasscode() throws InterruptedException {
 
 		driver.findElement(EnterSessionPasscode).sendKeys("12345");
+		logger.info("Entered session passcode");
+
 	}
 	public void ClicOnScheduleaVideoConference() throws InterruptedException {
 
 		driver.findElement(ScheduleaVideoConference).click();
+		logger.info("Clicked on shedule video conference");
+
 	}
 	public void EnterMeetingsHostEmail() throws InterruptedException {
 
 		driver.findElement(EnterMeetingsHostEmail).sendKeys("murali.seethalam@genysoft.com");
+		logger.info("Entered meeting host e-mail ID");
+
 	}
 	public void EnterMeetingRegistrantsEmail() throws InterruptedException {
 
 		driver.findElement(EnterMeetingRegistrantsEmail).sendKeys("edepozeautomationtesting@gmail.com");
+		logger.info("Entered meeting registrant e-mail ID");
+
 	}
 	public void ClickOnSave() throws InterruptedException {
 		Thread.sleep(500);
@@ -230,11 +303,15 @@ public class Client_Zoom_Sessions_Creations_PageObjects_PageObjects {
 		}
 
 		Thread.sleep(5000);
+		logger.info("Clicked on save");
+
 		//driver.findElement(ClickOnSave).click();
 	}
 	public void ClickOnAddfolder() throws InterruptedException {
 
 		driver.findElement(ClickOnAddfolder).click();
+		logger.info("Clicked on Add Folder button");
+
 	}
 
 	//	public void EnterNonZoomFolderName() throws InterruptedException {
@@ -245,14 +322,20 @@ public class Client_Zoom_Sessions_Creations_PageObjects_PageObjects {
 	public void EnterZoomFolderName() throws InterruptedException {
 
 		driver.findElement(EnterFolderName).sendKeys("MAT Zoom Folder");
+		logger.info("Entered folder name");
+
 	}
 	public void ClickOnSaveFolder() throws InterruptedException {
 
 		driver.findElement(ClickOnSaveFolder).click();
+		logger.info("Clicked on save folder");
+
 	}
 	public void ClickOnAddDocuments() throws InterruptedException {
 
 		driver.findElement(ClickOnAddDocuments).click();
+		logger.info("Clicked on add documents");
+
 	}
 
 	public void UploadDocuments() throws InterruptedException, IOException {
@@ -282,6 +365,8 @@ public class Client_Zoom_Sessions_Creations_PageObjects_PageObjects {
 		Thread.sleep(13000);
 		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		driver.findElement(ClickOnclose).click();
+		logger.info("Click on close");
+
 	}
 	public void DocumentValidation() throws InterruptedException {
 		Thread.sleep(2000);
@@ -292,6 +377,8 @@ public class Client_Zoom_Sessions_Creations_PageObjects_PageObjects {
 		//		System.out.println("Total Names Displayed Coumt: " + numberOnly);
 		Assert.assertEquals("11", numberOnly);
 		System.out.println("Successfully Uploaded Files");
+		logger.info("Uploaded documents");
+
 	
 	}
 	public void FolderValidation() throws InterruptedException {
@@ -311,6 +398,8 @@ public class Client_Zoom_Sessions_Creations_PageObjects_PageObjects {
 	}
 	public Client_Zoom_Sessions_Creations_PageObjects_PageObjects(WebDriver driver) {
 		this.driver=driver;
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
 
 	}
 	public void MeetingLinkValidation() throws InterruptedException {
@@ -321,11 +410,12 @@ public class Client_Zoom_Sessions_Creations_PageObjects_PageObjects {
 		   System.out.println("Succefully Navigating To Session Join Page");	
 		}
 		else {
-			System.out.println("Mail link Verification Faild");	
+			System.out.println("Mail link Verification Vaild");	
 		}
 		
-		
+		logger.info("Validated meeting link");
 		Screenshots.usernamescreenshot(driver, "ZoomDepositionSessionCreation");
+		logger.info("Captured Screenshot");
 
 	}
 	
@@ -334,6 +424,7 @@ public class Client_Zoom_Sessions_Creations_PageObjects_PageObjects {
 
 		Thread.sleep(2000);
 		Screenshots.usernamescreenshot(driver, "ZoomArbitrationSessionCreation");
+		logger.info("Captured Screenshot");
 
 	}
 
@@ -341,6 +432,7 @@ public class Client_Zoom_Sessions_Creations_PageObjects_PageObjects {
 
 		Thread.sleep(2000);
 		Screenshots.usernamescreenshot(driver, "ZoomMediationSession");
+		logger.info("Captured Screenshot");
 
 	}
 
@@ -348,6 +440,7 @@ public class Client_Zoom_Sessions_Creations_PageObjects_PageObjects {
 
 		Thread.sleep(2000);
 		Screenshots.usernamescreenshot(driver, "ZoomTrialSessionCreation");
+		logger.info("Captured Screenshot");
 
 	}
 
@@ -355,6 +448,7 @@ public class Client_Zoom_Sessions_Creations_PageObjects_PageObjects {
 
 		Thread.sleep(2000);
 		Screenshots.usernamescreenshot(driver, "ZoomWitnessPrepSessionCreation");
+		logger.info("Captured Screenshot");
 
 	}
 

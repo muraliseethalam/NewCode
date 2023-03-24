@@ -1,5 +1,7 @@
 package com.edepoze.client.pageobjects;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +18,7 @@ import com.edepoze.utilitifiles.Screenshots;
 // Client Login
 public class Client_Login_PageObjects {
 
+	public static Logger logger;
 	WebDriver driver;
 
 	By Username=By.name("username");
@@ -26,22 +29,30 @@ public class Client_Login_PageObjects {
 
 	public Client_Login_PageObjects(WebDriver driver) {
 		this.driver = driver;
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
 	}
 
 	public void EnterUsername() throws Exception {
 		driver.findElement(Username).sendKeys(OutputData.EnterClientUserName());
+		logger.info("Client username entered");
 	}
 	public void EnterPassword() throws Exception {
 		driver.findElement(Password).sendKeys(OutputData.EnterClientPassword());
+		logger.info("Client password entered");
+
 	}
 	public void ClickOnLogin() throws Exception {
 		driver.findElement(Login).click();
+		logger.info("Clicked on login");
+
 	}
 	
 	public void ScrollDown() throws Exception {
 		Thread.sleep(2000);
 		JavascriptExecutor js=(JavascriptExecutor)driver;
 		js.executeScript("window.scrollBy(0,1000)");
+		logger.info("Scrolled down");
 	}
 	
 	public void ClientLoginValidation() throws InterruptedException {
@@ -57,7 +68,7 @@ public class Client_Login_PageObjects {
 			System.out.println("Client Login Failed");
 		}
 
-
+		logger.info("Validated client login");
 	}
 
 	public void AcceptTermsConditions() throws Exception {
@@ -74,7 +85,7 @@ public class Client_Login_PageObjects {
 
 		}
 
-
+		logger.info("Accepted terms and conditions");
 	}
 
 

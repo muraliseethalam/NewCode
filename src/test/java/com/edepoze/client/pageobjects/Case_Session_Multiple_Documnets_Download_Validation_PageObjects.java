@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import org.apache.commons.io.FileUtils;
-
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -20,10 +21,15 @@ import com.edepoze.utilitifiles.Screenshots;
 
 // Case Session Multiple Documents Download Validation
 public class Case_Session_Multiple_Documnets_Download_Validation_PageObjects {
+	
+	public static Logger logger;
+	
 	WebDriver driver;
 	
 	public Case_Session_Multiple_Documnets_Download_Validation_PageObjects(WebDriver driver) {
 		this.driver=driver;
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
 	}
 	
 	By ClickOnCase =By.xpath("(//table[@class='tbl_info']//tr//td[3])[1]");
@@ -39,29 +45,36 @@ public class Case_Session_Multiple_Documnets_Download_Validation_PageObjects {
 	
 	public void ClickOnCase() throws Exception {
 		driver.findElement(ClickOnCase).click();
+		logger.info("Clicked Add New Case button");
 	}
 	public void ClickOnSession() throws Exception {
 		driver.findElement(ClickOnSession).click();
+		logger.info("Clicked Add Session button");
 	}
 	public void ScroollDown() throws Exception {
 		JavascriptExecutor js=(JavascriptExecutor)driver;
 		js.executeScript("window.scrollBy(0,1000)");
+		logger.info("Scrolled down");
 	}
 	public void ClickOnFolder() throws Exception {
 		driver.findElement(ClickOnFolder).click();
+		logger.info("Clicked on folder");
 	}
 	public void ClickOnSelectAll() throws Exception {
 		driver.findElement(ClickOnSelectAll).click();
+		logger.info("Clicked on selectall");
 		Thread.sleep(1000);
 		Screenshots.usernamescreenshot(driver, "CaseSessionMultipleDocumentsDownloadValidation");
+		logger.info("Screenshot captured");
 	}
 	public void ClickOnDownload() throws Exception {
 		Thread.sleep(1000);
 		driver.findElement(ClickOnDownload).click();
+		logger.info("Clicked on Download button");
 	}
 	public void WaitUntilDownload() throws Exception {
 		Thread.sleep(60000);
-		
+		logger.info("Documents downloaded");
 	}
 	
 	
@@ -104,6 +117,7 @@ public class Case_Session_Multiple_Documnets_Download_Validation_PageObjects {
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
+	        logger.info("Unzipped downloaded documents");
 	        Thread.sleep(1000);
 	        filelocation.delete();
 	    }
@@ -152,7 +166,7 @@ public class Case_Session_Multiple_Documnets_Download_Validation_PageObjects {
 						System.out.println("Test fail"+"\n"+"Excpeted file is: "+UIFiles.get(i)+"\n"+"Actuali File Is"+Downloadfiles.get(i));
 					
 					}
-					
+					logger.info("Validated UI and downloaded documents");
 				}
 				
 			} catch (Exception e) {

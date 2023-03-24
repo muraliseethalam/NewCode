@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -18,9 +20,12 @@ import com.edepoze.utilitifiles.Screenshots;
 
 // Downloading Case Folder
 public class Client_Case_Folders_Folder_Download_Validation_PageObjects {
+	public static Logger logger;
 	WebDriver driver;
 	public Client_Case_Folders_Folder_Download_Validation_PageObjects(WebDriver driver) {
 		this.driver=driver;
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
 	}
 	By ClickOnCase =By.xpath("(//table[@class='tbl_info']//tr//td[3])[1]");
 	By ClickOnCaseFolder=By.xpath("//div[@class='icon']");
@@ -31,29 +36,35 @@ public class Client_Case_Folders_Folder_Download_Validation_PageObjects {
 	
 	public void ClickOnCase() {
 		driver.findElement(ClickOnCase).click();
+		logger.info("Clicked on case");
 	}
 	public void ClickOnCaseFolder() {
 		driver.findElement(ClickOnCaseFolder).click();
+		logger.info("Clicked on case folder");
 	}
 	public void ClickOnCopyFolder() throws InterruptedException {
 		Thread.sleep(1000);
 		driver.findElement(ClickOnCopyFolder).click();
+		logger.info("Clicked on copy folder");
 	}
 	public void ClickOnDownload() throws InterruptedException {
 		Thread.sleep(1000);
 		driver.findElement(ClickOnDownload).click();
 		Thread.sleep(1000);
+		logger.info("Clicked on download");
 		Screenshots.usernamescreenshot(driver, "ClientFolderOfCaseFolderDownloadValidation");
+		logger.info("Captured screenshot");
 	}
 	public void WaitUntilDownload() throws Exception {
 		Thread.sleep(60000);
-		
+		logger.info("Documents downloaded");
 	}
 	
 	public void ScrollDown() throws Exception {
 		Thread.sleep(2000);
 		JavascriptExecutor js=(JavascriptExecutor)driver;
 		js.executeScript("window.scrollBy(0,1000)");
+		logger.info("Scrolled down");
 	}
 	public void UnzipDownloadDocuments() {
 		String DisplayedCount=driver.findElement(ClickOnCopyFolder).getText();
@@ -88,6 +99,7 @@ public class Client_Case_Folders_Folder_Download_Validation_PageObjects {
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
+	        logger.info("Unzipped documents");
 	        DeleteZipFile.delete();
 	    }
 	
@@ -136,7 +148,7 @@ public class Client_Case_Folders_Folder_Download_Validation_PageObjects {
 						System.out.println("Test fail"+"\n"+"Excpeted file is: "+UIFiles.get(i)+"\n"+"Actuali File Is"+Downloadfiles.get(i));
 					
 					}
-					
+					logger.info("Downloaded folder of client case folder");
 				}
 				
 			} catch (Exception e) {

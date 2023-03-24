@@ -1,6 +1,9 @@
 package com.edepoze.client.pageobjects;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -10,10 +13,14 @@ import com.edepoze.utilitifiles.Screenshots;
 // Reflecting Of Case Folder In Sessions Folders
 public class Client_Case_Folder_Refelect_Sessions_Validation_PageObjects {
 	
+	public static Logger logger;
+
 	WebDriver driver;
 	
 	public Client_Case_Folder_Refelect_Sessions_Validation_PageObjects(WebDriver driver) {
 		this.driver=driver;
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
 		
 	}
 	By ClickOnCase =By.xpath("(//table[@class='tbl_info']//tr//td[3])[1]");
@@ -25,18 +32,23 @@ public class Client_Case_Folder_Refelect_Sessions_Validation_PageObjects {
 	
 	public void ClickOnCase() {
 		driver.findElement(ClickOnCase).click();
+		logger.info("Clicked on case");
 	}
 	public void ClickOnCaseFolder() {
 		driver.findElement(ClickOnCaseFolder).click();
+		logger.info("Clicked on case folder");
 	}
 	public void ClickOnCaseExhibits() throws InterruptedException {
 		Thread.sleep(1000);
 		driver.findElement(ClickOnCaseExhibits).click();
+		logger.info("Clicked on case exhibits");
 		Screenshots.usernamescreenshot(driver, "Client Case Folder Documents");
+		logger.info("Captured screeenshot");
 	}
 	public void ScrollDown() throws Exception {
 		JavascriptExecutor js=(JavascriptExecutor)driver;
 		js.executeScript("window.scrollBy(0,1000)");
+		logger.info("Scrolled down");
 	}
 	public void ValidatingCaseExhibitsDocumentsInSessions() throws InterruptedException {
 		Thread.sleep(2000);
@@ -72,7 +84,7 @@ public class Client_Case_Folder_Refelect_Sessions_Validation_PageObjects {
 					System.out.println("Test fail"+"\n"+"Excpeted file is: "+CaseExhibits.get(i)+"\n"+"Actuali File Is"+SessionCaseExhibits.get(i));
 					
 				}
-				
+				logger.info("Validated case exhibit documents in sessions");
 			}
 			
 			

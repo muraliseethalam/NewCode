@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import org.apache.commons.io.FileUtils;
-
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -20,10 +21,13 @@ import com.edepoze.utilitifiles.Screenshots;
 
 // Downloading Session Folder
 public class Client_Case_Session_Folder_Download_Validation_PageObjects {
+	public static Logger logger;
 	WebDriver driver;
 	
 	public Client_Case_Session_Folder_Download_Validation_PageObjects(WebDriver driver) {
 		this.driver=driver;
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
 	}
 	
 	By ClickOnCase =By.xpath("(//table[@class='tbl_info']//tr//td[3])[1]");
@@ -36,27 +40,34 @@ public class Client_Case_Session_Folder_Download_Validation_PageObjects {
 	
 	public void ClickOnCase() throws Exception {
 		driver.findElement(ClickOnCase).click();
+		logger.info("Clicked on case");
 	}
 	public void ClickOnSession() throws Exception {
 		driver.findElement(ClickOnSession).click();
+		logger.info("Clicked on session");
 	}
 	public void ScroollDown() throws Exception {
 		JavascriptExecutor js=(JavascriptExecutor)driver;
 		js.executeScript("window.scrollBy(0,1000)");
+		logger.info("Scrolled down");
 	}
 	public void ClickOnFolder() throws Exception {
 		driver.findElement(ClickOnFolder).click();
 		Thread.sleep(1000);
+		logger.info("Clicked on folder");
 		Screenshots.usernamescreenshot(driver, "CaseSessionFolderDownloadValidation");
+		logger.info("Captured screenshot");
 	}
 	
 	public void ClickOnDownload() throws Exception {
 		Thread.sleep(1000);
 		driver.findElement(ClickOnDownload).click();
+		logger.info("Clicked on download");
+
 	}
 	public void WaitUntilDownload() throws Exception {
 		Thread.sleep(60000);
-		
+		logger.info("Downloaded documents");		
 	}
 	
 	
@@ -97,6 +108,7 @@ public class Client_Case_Session_Folder_Download_Validation_PageObjects {
 	            e.printStackTrace();
 	        }
 	        Thread.sleep(1000);
+			logger.info("Unzipped documents");
 	        ZipfileDelete.delete();
 	       
 	    }
@@ -152,6 +164,7 @@ public class Client_Case_Session_Folder_Download_Validation_PageObjects {
 				// TODO: handle exception
 			}
 			Thread.sleep(1000);
+			logger.info("Validated UI documents and downloaded documents");
 			FileUtils.deleteDirectory(FolderDelete);
 			
 	

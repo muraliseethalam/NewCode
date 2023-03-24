@@ -37,7 +37,7 @@ public class BaseClass {
 		
 		logger = Logger.getLogger("eDepoze");
 		PropertyConfigurator.configure("Log4j.properties");
-		logger.info("Borwser launched");
+		logger.info("Browser launched");
 
 		if (Environment.contentEquals("chrome")) {
 			ChromeOptions options = new ChromeOptions();
