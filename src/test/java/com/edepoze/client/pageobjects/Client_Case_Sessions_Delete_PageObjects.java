@@ -1,5 +1,7 @@
 package com.edepoze.client.pageobjects;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -14,10 +16,13 @@ import com.edepoze.utilitifiles.Screenshots;
 
 // Deleting Session
 public class Client_Case_Sessions_Delete_PageObjects {
+	public static Logger logger;
 	WebDriver driver;
 	OutputData obj=new OutputData();
 	public Client_Case_Sessions_Delete_PageObjects(WebDriver driver) {
 		this.driver=driver;
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
 
 	}
 
@@ -31,21 +36,26 @@ public class Client_Case_Sessions_Delete_PageObjects {
 
 	public void ClickOnCase() throws Exception {
 		driver.findElement(ClickOnCase).click();
+		logger.info("Clicked on case");
 	}
 	public void ClickOnDelete() throws Exception {
 		Thread.sleep(1000);
 		Actions action = new Actions(driver);
 		action.moveToElement(driver.findElement(MouseOver)).build().perform();
+		logger.info("Mouse hovered");
 		driver.findElement(ClickOnDelete).click();
+		logger.info("Clicked on delete");
 	}
 	public void ConfirmDelete() throws Exception {
 		Thread.sleep(1000);
 		driver.findElement(ConfirmDelte).click();
+		logger.info("Clicked on confirm delete");
 	}
 	public void CaptureCaseID() throws Exception {
 		Thread.sleep(1000);
 		String CasId=driver.findElement(CaseID).getText();
 		SessionID=CasId;
+		logger.info("Captured case ID");
 		
 	}
 	public void ValidateSessionDeletedOrNot() throws Exception {
@@ -63,7 +73,12 @@ public class Client_Case_Sessions_Delete_PageObjects {
 			System.out.println("Successfully Deleted Session");
 			Screenshots.usernamescreenshot(driver, "ClientCaseSessionsDeleteValidation");
 		}
+	
+		logger.info("Deleted case session");
+	
 	}
+	
+	
 
 
 }

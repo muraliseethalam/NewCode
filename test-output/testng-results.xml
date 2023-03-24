@@ -1,53 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-03-23T17:42:13 IST" name="eDepoze" finished-at="2023-03-23T17:43:43 IST" duration-ms="89754">
+  <suite started-at="2023-03-24T16:17:37 IST" name="Default suite" finished-at="2023-03-24T16:19:10 IST" duration-ms="93769">
     <groups>
     </groups>
-    <test started-at="2023-03-23T17:42:13 IST" name="eDepoze" finished-at="2023-03-23T17:43:43 IST" duration-ms="89754">
-      <class name="com.edepoze.reseller.test.scenarios.Reseller_Add_Enterprise">
-        <test-method is-config="true" signature="Browserlaunch()[pri:0, instance:com.edepoze.reseller.test.scenarios.Reseller_Add_Enterprise@7674f035]" started-at="2023-03-23T17:42:32 IST" name="Browserlaunch" finished-at="2023-03-23T17:42:39 IST" duration-ms="7001" status="PASS">
+    <test started-at="2023-03-24T16:17:37 IST" name="Default test" finished-at="2023-03-24T16:19:10 IST" duration-ms="93769">
+      <class name="com.edepoze.client.test.scenarios.Client_Zoom_Mediation_Session">
+        <test-method is-config="true" signature="Browserlaunch()[pri:0, instance:com.edepoze.client.test.scenarios.Client_Zoom_Mediation_Session@3c19aaa5]" started-at="2023-03-24T16:17:37 IST" name="Browserlaunch" finished-at="2023-03-24T16:17:47 IST" duration-ms="9777" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Browserlaunch -->
-        <test-method signature="AddEnterpriseClient()[pri:0, instance:com.edepoze.reseller.test.scenarios.Reseller_Add_Enterprise@7674f035]" started-at="2023-03-23T17:42:39 IST" name="AddEnterpriseClient" finished-at="2023-03-23T17:43:43 IST" duration-ms="63901" status="PASS">
+        <test-method signature="ZoomMediationSession()[pri:5, instance:com.edepoze.client.test.scenarios.Client_Zoom_Mediation_Session@3c19aaa5]" started-at="2023-03-24T16:17:47 IST" name="ZoomMediationSession" finished-at="2023-03-24T16:19:10 IST" duration-ms="83914" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- AddEnterpriseClient -->
-        <test-method is-config="true" signature="FaildScreenshotCapture1(org.testng.ITestResult)[pri:0, instance:com.edepoze.reseller.test.scenarios.Reseller_Add_Enterprise@7674f035]" started-at="2023-03-23T17:43:43 IST" name="FaildScreenshotCapture1" finished-at="2023-03-23T17:43:43 IST" duration-ms="1" status="PASS">
+        </test-method> <!-- ZoomMediationSession -->
+        <test-method is-config="true" signature="FaildScreenshotCapture1(org.testng.ITestResult)[pri:0, instance:com.edepoze.client.test.scenarios.Client_Zoom_Mediation_Session@3c19aaa5]" started-at="2023-03-24T16:19:10 IST" name="FaildScreenshotCapture1" finished-at="2023-03-24T16:19:10 IST" duration-ms="4" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=AddEnterpriseClient status=SUCCESS method=Reseller_Add_Enterprise.AddEnterpriseClient()[pri:0, instance:com.edepoze.reseller.test.scenarios.Reseller_Add_Enterprise@7674f035] output={null}]]]>
+                <![CDATA[[TestResult name=ZoomMediationSession status=SUCCESS method=Client_Zoom_Mediation_Session.ZoomMediationSession()[pri:5, instance:com.edepoze.client.test.scenarios.Client_Zoom_Mediation_Session@3c19aaa5] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- FaildScreenshotCapture1 -->
-      </class> <!-- com.edepoze.reseller.test.scenarios.Reseller_Add_Enterprise -->
-      <class name="com.edepoze.reseller.test.scenarios.Reseller_Login">
-        <test-method is-config="true" signature="Browserlaunch()[pri:0, instance:com.edepoze.reseller.test.scenarios.Reseller_Login@2e6a8155]" started-at="2023-03-23T17:42:17 IST" name="Browserlaunch" finished-at="2023-03-23T17:42:26 IST" duration-ms="9769" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Browserlaunch -->
-        <test-method signature="Resellerlogin()[pri:0, instance:com.edepoze.reseller.test.scenarios.Reseller_Login@2e6a8155]" started-at="2023-03-23T17:42:26 IST" name="Resellerlogin" finished-at="2023-03-23T17:42:32 IST" duration-ms="5649" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Resellerlogin -->
-        <test-method is-config="true" signature="FaildScreenshotCapture1(org.testng.ITestResult)[pri:0, instance:com.edepoze.reseller.test.scenarios.Reseller_Login@2e6a8155]" started-at="2023-03-23T17:42:32 IST" name="FaildScreenshotCapture1" finished-at="2023-03-23T17:42:32 IST" duration-ms="3" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=Resellerlogin status=SUCCESS method=Reseller_Login.Resellerlogin()[pri:0, instance:com.edepoze.reseller.test.scenarios.Reseller_Login@2e6a8155] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- FaildScreenshotCapture1 -->
-      </class> <!-- com.edepoze.reseller.test.scenarios.Reseller_Login -->
-    </test> <!-- eDepoze -->
-  </suite> <!-- eDepoze -->
+      </class> <!-- com.edepoze.client.test.scenarios.Client_Zoom_Mediation_Session -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

@@ -1,5 +1,7 @@
 package com.edepoze.client.pageobjects;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -13,6 +15,8 @@ import com.edepoze.utilitifiles.Screenshots;
  */
 // Client Case Delete
 public class Client_Case_Delete_PageObjecst {
+	
+	public static Logger logger;
 
 	WebDriver driver;
 
@@ -23,6 +27,8 @@ public class Client_Case_Delete_PageObjecst {
 
 	public Client_Case_Delete_PageObjecst(WebDriver driver) {
 		this.driver=driver;
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
 
 	}
 
@@ -30,24 +36,26 @@ public class Client_Case_Delete_PageObjecst {
 		Thread.sleep(4000);
 		Actions action = new Actions(driver);
 		action.moveToElement(driver.findElement(MouseMove)).build().perform();
+		logger.info("Mouse hovered");
 
 	}
 
 	public void ClickOnDelete() throws InterruptedException {
 		driver.findElement(ClickOnDelete).click();
-
+		logger.info("Clicked on delete");
 	}
 
 	public void Confirmtdelete() throws InterruptedException {
 		Thread.sleep(2000);
 		driver.findElement(Confirmtdelete).click();
+		logger.info("Clicked on Delete button");
 	}
 
 	public int BeforeCaseCount() throws InterruptedException {
 		Thread.sleep(2000);
 		int BeforeCaseDeleteCount=driver.findElements(RemainingCasesCount).size();
 		return BeforeCaseDeleteCount;
-
+		
 	}
 
 	public int AfterCaseCount() throws InterruptedException {
@@ -65,7 +73,10 @@ public class Client_Case_Delete_PageObjecst {
 		Assert.assertEquals(before, After);
 
 		Screenshots.usernamescreenshot(driver, "ClientCaseDelete");
+		logger.info("Captured screen shot");
 		System.out.println("Client Case Deleted Successfully");
+		
+		logger.info("Deleted case");
 	}
 
 }

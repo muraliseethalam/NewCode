@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -18,10 +20,12 @@ import com.edepoze.utilitifiles.Screenshots;
 
 // Downloading Multiple Documents Of Case Folder
 public class Client_Case_Folder_Multiple_Document_Downalod_Validation_PageOjects {
-	
+	public static Logger logger;
 	WebDriver driver;
 	public Client_Case_Folder_Multiple_Document_Downalod_Validation_PageOjects(WebDriver driver) {
 		this.driver=driver;
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
 	}
 	
 	By ClickOnCase =By.xpath("(//table[@class='tbl_info']//tr//td[3])[1]");
@@ -35,27 +39,34 @@ public class Client_Case_Folder_Multiple_Document_Downalod_Validation_PageOjects
 	
 	public void ClickOnCase() throws Exception {
 		driver.findElement(ClickOnCase).click();
+		logger.info("Clicked on case");
 	}
 	public void ClickOnCaseFolder() throws Exception {
 		Thread.sleep(1000);
 		driver.findElement(ClickOnCaseFolder).click();
+		logger.info("Clicked on case folder");
 	}
 	public void ClickOnDeleteFolder() throws Exception {
 		Thread.sleep(1000);
 		driver.findElement(ClickOnDeleteFolder).click();
+		logger.info("Clicked on delete folder");
 	}
 	public void ClickOnSelectAll() throws Exception {
 		Thread.sleep(1000);
 		driver.findElement(ClickOnSelectAll).click();
+		logger.info("Clicked on select all");
 	}
 	public void ClickOnDownload() throws Exception {
 		Thread.sleep(1000);
 		driver.findElement(ClickOnDownload).click();
 		Thread.sleep(1000);
+		logger.info("Clicked on download");
 		Screenshots.usernamescreenshot(driver, "CaseFolderMultipleDocumentDownloadValidation");
+		logger.info("Captured screenshot");
 	}
 	public void WaitUntilDownload() throws Exception {
 		Thread.sleep(60000);
+		logger.info("Documents downloaded");
 		
 	}
 	
@@ -64,6 +75,7 @@ public class Client_Case_Folder_Multiple_Document_Downalod_Validation_PageOjects
 		Thread.sleep(2000);
 		JavascriptExecutor js=(JavascriptExecutor)driver;
 		js.executeScript("window.scrollBy(0,1000)");
+		logger.info("Scrolled down");
 	}
 	public void UnzipDownloadDocuments() throws InterruptedException {
 		String DisplayedCount=driver.findElement(By.xpath("//div[@class='breadcrumb']")).getText().split(" ")[3];
@@ -155,7 +167,8 @@ public class Client_Case_Folder_Multiple_Document_Downalod_Validation_PageOjects
 					
 					}
 					
-				}
+					logger.info("Validated UI and downloaded documents");}
+				
 				
 			} catch (Exception e) {
 				// TODO: handle exception

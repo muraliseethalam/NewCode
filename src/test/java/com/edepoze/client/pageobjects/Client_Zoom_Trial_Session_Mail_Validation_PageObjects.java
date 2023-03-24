@@ -14,6 +14,9 @@ import javax.mail.Session;
 import javax.mail.Store;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.search.SearchTerm;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.jsoup.Jsoup;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -26,11 +29,14 @@ import com.edepoze.utilitifiles.ReadConfigPropertiesFile;
 // Getting Client Mail Password Setup Link
 public class Client_Zoom_Trial_Session_Mail_Validation_PageObjects {
 	
+	public static Logger logger;
 	WebDriver driver;
 	public static String sessionID;
 	public static String link;
 	public Client_Zoom_Trial_Session_Mail_Validation_PageObjects(WebDriver driver) {
 		this.driver=driver;
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
 	}
 
 	public static void searchEmail(String host, String port, String userName,String password) throws Exception {
@@ -144,6 +150,7 @@ public class Client_Zoom_Trial_Session_Mail_Validation_PageObjects {
 			ex.printStackTrace();
 			System.out.println("Could not connect to the message store.");
 		}
+		logger.info("Searched for session ID in email");
 	}
 	
 	 private static String getTextFromMessage(Message message) throws Exception {
@@ -192,6 +199,7 @@ public class Client_Zoom_Trial_Session_Mail_Validation_PageObjects {
 	}
 	public void ClickOnArbitrationSessionLink() throws Exception {
 		driver.get(link);
+		logger.info("Printed Arbitration session link");
 		}
 }
 
