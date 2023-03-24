@@ -72,7 +72,7 @@ public class Reseller_AddEnterprise_PageObjects {
 	}
 	public void ClickOnAddEnterprise() throws Exception {
 		driver.findElement(AddClient).click();
-		logger.info("Clicked Add Client button");
+		logger.info("Clicked Add Reseller button");
 	}
 	public void EnterClientName() throws Exception {
 		String CName=faker.name().firstName();
@@ -215,6 +215,7 @@ public class Reseller_AddEnterprise_PageObjects {
 		if(driver.findElement(ZIP).isDisplayed()) {
 			System.out.println("Failed at Basic Information page while creating a Enterprise Account");
 			Screenshots.usernamescreenshot(driver, "AddEnterpriseClient");
+			logger.info("Screenshot captured");
 		}
 		else {
 			System.out.println("Success at Basic Information page while creating a Enterprise Account");
@@ -244,6 +245,7 @@ public class Reseller_AddEnterprise_PageObjects {
 		driver.findElement(Go).click();
 		Thread.sleep(3000);
 		Screenshots.usernamescreenshot(driver, "AddEnterpriseClient");
+		logger.info("Screenshot captured");
 		logger.info("Cliekd on search button");
 	}
 
@@ -257,7 +259,7 @@ public class Reseller_AddEnterprise_PageObjects {
 		else {
 			System.out.println("Failed: Enterprise Account Not Created Successfully");
 		}
-		logger.info("Client creation validated");
+		logger.info("Reseller account creation validated");
 			
 	}
 

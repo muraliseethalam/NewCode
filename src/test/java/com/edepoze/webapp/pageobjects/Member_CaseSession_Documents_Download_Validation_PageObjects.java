@@ -11,6 +11,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,10 +28,12 @@ import com.edepoze.utilitifiles.Screenshots;
 public class Member_CaseSession_Documents_Download_Validation_PageObjects {
 
 	WebDriver driver;
+	public static Logger logger;
 
 	public Member_CaseSession_Documents_Download_Validation_PageObjects(WebDriver driver) {
-
 		this.driver=driver;
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
 
 	}
 
@@ -47,11 +51,14 @@ public class Member_CaseSession_Documents_Download_Validation_PageObjects {
 	public void ClickOnMemberSession() {
 		driver.switchTo().frame(0);
 		driver.findElement(ClickOnMemberSession).click();
+		logger.info("Clicked the member session");
 	}
 
 	public void ClickOnMemberFolder() {
 		driver.findElement(ClickOnMemberFolder).click();
+		logger.info("Clicked the member folder");
 		Screenshots.usernamescreenshot(driver, "MemberCaseSessionDocumentsDownloadValidation");
+		logger.info("Screenshot captured");
 	}
 
 
@@ -62,16 +69,18 @@ public class Member_CaseSession_Documents_Download_Validation_PageObjects {
 			String OptionName=ele.getText();
 			UIFiles.add(OptionName);
 		}	
+		logger.info("Captured member case session documents");
 	}	
 
 	public void ClickOnDownload() {
-
 		driver.findElement(ClickOnDownload).click();
+		logger.info("Clicked the download button");
 
 	}
 
 	public void WaitUntilDownload() throws Exception {
 		Thread.sleep(60000);
+		logger.info("Wait unitl download");
 
 	}
 
@@ -111,6 +120,7 @@ public class Member_CaseSession_Documents_Download_Validation_PageObjects {
 		}
 		Thread.sleep(1000);
 		filelocation.delete();
+		logger.info("File unzipped");
 	}
 
 
@@ -131,8 +141,9 @@ public class Member_CaseSession_Documents_Download_Validation_PageObjects {
 				Downloadfiles.add(FileNames);
 
 			}
-
+			logger.info("Catured UI file names");
 			int UIFilesize=UIFiles.size();
+			logger.info("Catured download file names");
 			int DownloadSize=Downloadfiles.size();
 
 			System.out.println("Downloaded Documents count is: "+DownloadSize);
@@ -154,8 +165,10 @@ public class Member_CaseSession_Documents_Download_Validation_PageObjects {
 		} catch (Exception e) {
 
 		}
+		logger.info("Validated UI and downloaded documents");
 		Thread.sleep(1000);
 		FileUtils.deleteDirectory(UnzipfolderDelete);
+		logger.info("Files deleted");
 
 
 	}

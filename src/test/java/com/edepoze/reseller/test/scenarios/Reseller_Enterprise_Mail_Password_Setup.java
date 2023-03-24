@@ -15,12 +15,13 @@ public class Reseller_Enterprise_Mail_Password_Setup extends BaseClass {
 
 	public void PasswordSetup() throws Exception {
 		// Getting the link from mail
-		Reseller_Enterprise_Mail_Password_Setup_PageObjects getlink=new Reseller_Enterprise_Mail_Password_Setup_PageObjects();
+		Reseller_Enterprise_Mail_Password_Setup_PageObjects Getlink=new Reseller_Enterprise_Mail_Password_Setup_PageObjects(driver);
 		Reseller_Login_PageObjects Password=new Reseller_Login_PageObjects(driver);
 		driver.get(OutputData.EnterprisePasswordsetuplink());
 		
 		//Password Setup Page
-		getlink.GetLink();
+		Getlink.GetLink();
+		Getlink.Loadinglink();
 		Password.EnterNewPassword();
 		Password.EnterConfirmPassword();
 		Password.ClickOnSave();

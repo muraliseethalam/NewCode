@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
@@ -36,6 +38,7 @@ import ru.yandex.qatools.ashot.comparison.ImageDiffer;
 public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 
 	public static String getSessionId; 
+	public static Logger logger;
 	WebDriver driver;
 	WebDriver Incognitodriver;
 	ReadConfigPropertiesFile readconfig = new ReadConfigPropertiesFile();
@@ -43,6 +46,8 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 
 	public NonZoom_Arbitration_Session_With_Witness_PageObjects(WebDriver driver) {
 		this.driver=driver;
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
 	}
 	By ClickOnNonZoomDeposition=By.xpath("(//*[text()='Arbitration'])[1]");
 	By ClickOnBeginSession=By.xpath("//div[@id='btn_start_deposition']");
@@ -98,15 +103,18 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 	
 	public void Driverquit() {
 		Incognitodriver.quit();
+		logger.info("Incognito browser quitted");
 	}
 	public void ClickOnNonZoomDepositionSession() {
 		driver.switchTo().frame(0);
 		driver.findElement(ClickOnNonZoomDeposition).click();
+		logger.info("Clciked the non zoom deposition session");
 	}
 
 
 	public void ClickOnIntroduceDocumentsFolder() {
 		driver.findElement(ClickOnIntroduceDocumentsFolder).click();
+		logger.info("Clciked the introduce documents folder");
 	}
 	public void BeginSession() {
 		try {
@@ -127,6 +135,7 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 			// TODO: handle exception
 		}
 		driver.switchTo().frame(0);
+		logger.info("Clicked the session begin button");
 	}
 
 
@@ -139,19 +148,23 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 			driver.findElement(WaitUntilDocumentsload);
 			try {
 				if(driver.findElement(ClickOnMark).isDisplayed()) {
-					driver.findElement(ClickOnMark).click();	
+					driver.findElement(ClickOnMark).click();
+					logger.info("Clciked the mark button");
 				}
 			} catch (Exception e) {
 				driver.findElement(ClickOnIntroduce).click();
+				logger.info("Clciked the introduce button");
 			}
 
 			driver.findElement(WaitUntilDocumentOpen);
 			Thread.sleep(5000);
 			driver.findElement(CLickOnDistribute).click();
 			Thread.sleep(3000);
+			logger.info("Clciked the distribute button");
 			driver.findElement(WaitUntilDocumentOpen);
 			Thread.sleep(3000);
 			driver.findElement(ClickOnBackButton).click();
+			logger.info("Clciked the back button");
 			driver.switchTo().frame(0);
 
 
@@ -161,6 +174,7 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 	public void OfficialExhibitsDocumentsCaptureOfMember() {
 
 		driver.findElement(ClickOnMemberMarkedExhibits).click();
+		logger.info("Clciked the member marked exhibits");
 		List<WebElement> ds=driver.findElements(By.xpath("(//div[@id='filesList']//p[@class='fileName'])"));
 
 		for (WebElement ele : ds) {
@@ -168,7 +182,7 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 			OfficialExhibits.add(OptionName);
 		}
 
-
+		logger.info("captured official exhibits documents capture of member");
 
 	}	
 
@@ -176,6 +190,7 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 	public void WitnessLogin() throws InterruptedException {
 		driver.manage().window().setSize(new Dimension(700, 800));
 		driver.manage().window().setPosition(new Point(10,10));
+		logger.info("minimized screen");
 
 
 
@@ -183,40 +198,52 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--incognito");
 			Incognitodriver=new ChromeDriver(options);
+			logger.info("Incognoto browser launched");
 			Incognitodriver.manage().window().setSize(new Dimension(680, 800));
 			Incognitodriver.manage().window().setPosition(new Point(700,10));
+			logger.info("minimized screen");
 		}
 		else if(Environment.contentEquals("firefox")) {
 			FirefoxOptions options = new FirefoxOptions();
+			logger.info("Firefox browser launched");
 			options.addArguments("--incognito");
 			Incognitodriver=new FirefoxDriver(options);
 			Incognitodriver.manage().window().setSize(new Dimension(680, 800));
 			Incognitodriver.manage().window().setPosition(new Point(700,10));
+			logger.info("minimized screen");
 		}
 
 		else if(Environment.contentEquals("edgedriver")) {
 			EdgeOptions options = new EdgeOptions();
+			logger.info("Edge browser launched");
 			options.addArguments("-inprivate");
 			Incognitodriver=new EdgeDriver(options);
 			Incognitodriver.manage().window().setSize(new Dimension(680, 800));
 			Incognitodriver.manage().window().setPosition(new Point(700,10));
-
+			logger.info("minimized screen");
 
 		}
 
 		Incognitodriver.get("https://app-" + readconfig.Environment() + ".edepoze.com/");
+		logger.info("URL entered");
 		Incognitodriver.manage().window().maximize();
 		Incognitodriver.findElement(ClickOnJoin).click();	
+		logger.info("Clicked the join button");
 		String getSessionId= driver.findElement(GetPasscode).getText().split(" ")[1];
 		Incognitodriver.findElement(EnterSessionID).sendKeys(getSessionId);
+		logger.info("Entered session ID");
 		Incognitodriver.findElement(EnterName).sendKeys("Arun");
+		logger.info("Entered name");
 		Incognitodriver.findElement(ClickOnLogin).click();
+		logger.info("Clicked the login button");
 		Thread.sleep(4000);
 		driver.switchTo().defaultContent();
 		driver.findElement(ClickOnAllow).click();
+		logger.info("Clicked the allow button");
 		Thread.sleep(2000);
 		Incognitodriver.manage().window().setSize(new Dimension(680, 800));
 		Incognitodriver.manage().window().setPosition(new Point(700,10));
+		logger.info("minimized screen");
 
 
 	}
@@ -231,6 +258,7 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 		else {
 			System.out.println("Failed To Login Witness");
 		}
+		logger.info("Validated witness login");
 	}
 
 
@@ -246,6 +274,7 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 			System.out.println(OptionName1);
 			MarkedExhibits.add(OptionName1);
 		}	
+		logger.info("Captured official exhibits documents of witness");
 	}
 
 	public void ComparisionBetweenMarkedExibitsOfMemberAndWitness() throws Exception {
@@ -255,10 +284,11 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 		int MarkedExhibitsCount=MarkedExhibits.size();
 		System.out.println("Marked Exhibits of Witness Count Is: "+MarkedExhibitsCount);
 		Screenshots.usernamescreenshot(driver, "ArbitrationSessionWithWitness");
+		logger.info("Captured screenshot");
 		//MarkedExhibits.removeAll(OfficialExhibits);
 		Assert.assertEquals(OfficialExhibitsCount, MarkedExhibitsCount);
 		System.out.println("Marked Exibits Documents Format Of Member And Witness Matched");
-
+		logger.info("Compared between marked exibits of member and witness");
 	}
 
 
@@ -268,39 +298,49 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 		for(int i=0; i<Documentscount; i++) {
 			int counts=i+1;
 			Incognitodriver.findElement(By.xpath("(//div[@id='filesList']//ul//li//div[@class='file_info']//p[@class='fileName'])["+counts+"]")).click();
+			logger.info("Clicked the document");
 			Incognitodriver.switchTo().defaultContent();
 			try {
 				Thread.sleep(2000);
 				//				Incognitodriver.findElement(WaitUtilDocumentsload);
 				Incognitodriver.findElement(ClickOnHighlightColor).click();
+				logger.info("Clicked the highlight color annotation");
 				Thread.sleep(2000);
 				Incognitodriver.switchTo().frame(0);
 				Incognitodriver.switchTo().frame(0);
 				WebElement canvas =Incognitodriver.findElement(canvastag);
 				new Actions(Incognitodriver).moveToElement(canvas, -120, -120).clickAndHold().moveToElement(canvas, -270, -220).release().perform();
 				Incognitodriver.switchTo().defaultContent();
+				logger.info("Documnet marked");
 				Incognitodriver.findElement(WaitUntilDocumentsload);
+				logger.info("Documnet loading...");
 				Incognitodriver.findElement(ClickOnPencilColor).click();
+				logger.info("clicked the pencli color annotation");
 				Incognitodriver.switchTo().frame(0);
 				Incognitodriver.switchTo().frame(0);
 				//				WebElement canvas =driver.findElement(canvastag);
 				new Actions(Incognitodriver).moveToElement(canvas, -120, -120).clickAndHold().moveToElement(canvas, -270, -220).release().perform();
 				Incognitodriver.switchTo().defaultContent();
+				logger.info("Document marked");
 				Incognitodriver.findElement(ClickOnBackButtonWitness).click();
+				logger.info("Clicked the back witness back button");
 				Thread.sleep(2000);
 				Incognitodriver.findElement(ClickOnsave).click();
+				logger.info("Clicked the save button");
 				Thread.sleep(5000);
 				Incognitodriver.switchTo().frame(0);
 			} catch (Exception e) {
 				//				Incognitodriver.findElement(WaitUtilDocumentsload);
 				Thread.sleep(2000);
 				Incognitodriver.findElement(ClickOnBackButtonWitness).click();
+				logger.info("Clicked the back witness back button");
 				Thread.sleep(5000);
 				Incognitodriver.switchTo().frame(0);
 			}
 		}
 		driver.switchTo().defaultContent();
 		driver.findElement(ClickOnCloseWitness).click();
+		logger.info("Clicked the close witness button");
 //		driver.switchTo().frame(0);
 
 	}
@@ -313,10 +353,12 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 		else {
 			System.out.println("Failed To Save Witness Documents");
 		}
+		logger.info("Verifying witness saved documents");
 	}
 	public void DocumentsPresentationFolder() throws InterruptedException {
 		Thread.sleep(2000);
 		driver.findElement(ClickOnIntroduceDocumentsFolder).click();
+		logger.info("Clicked the documents presentation folder");
 	}
 	public void DocumentsPresentation() throws InterruptedException {
 		Thread.sleep(1000);
@@ -324,11 +366,14 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 		for(int i=0; i<Doucmentssize; i++) {
 			int size=i+1;
 			driver.findElement(By.xpath("(//p[@class='fileName'][contains(text(), '.pdf')])["+size+"]")).click();
+			logger.info("Clicked the documents presentation folder");
 			driver.switchTo().defaultContent();
 			driver.findElement(WaitUntilDocumentsload);
 			driver.findElement(ClickOnPresentation).click();
+			logger.info("Clicked the presentation button");
 			Thread.sleep(2000);
 			driver.findElement(ClickOnStart).click();
+			logger.info("Clicked the start presantation button");
 			Thread.sleep(2000);
 			System.out.println("Presentation Started");
 
@@ -340,6 +385,7 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 			driver.findElement(By.xpath("//div[@class='pdf-capture']")).click();
 			driver.switchTo().defaultContent();
 			driver.findElement(ClickOnArrowColor).click();
+			logger.info("Clicked the arrow color annotation");
 			driver.switchTo().frame(0);
 			driver.switchTo().frame(0);
 			WebElement canvas =driver.findElement(canvastag);
@@ -347,17 +393,21 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 			System.out.println("Successfully ArrowColor Annotations Are Working");
 			// HighlightColor Annotations
 			Thread.sleep(2000);
+			logger.info("Document marked");
 			driver.switchTo().defaultContent();
 			driver.findElement(ClickOnHighlightColor).click();
+			logger.info("Clicked the highlight color annotation");
 			Thread.sleep(2000);
 			driver.switchTo().frame(0);
 			driver.switchTo().frame(0);
 			new Actions(driver).moveToElement(canvas, -180, -180).clickAndHold().moveToElement(canvas, -280, -220).release().perform();
 			System.out.println("Successfully HighlightColor Annotations Are Working");
+			logger.info("Document marked");
 			//PencilColor Annotations
 			Thread.sleep(2000);
 			driver.switchTo().defaultContent();
 			driver.findElement(ClickOnPencilColor).click();
+			logger.info("Clicked the pencil color annotation");
 			Thread.sleep(1000);
 			driver.switchTo().frame(0);
 			driver.switchTo().frame(0);
@@ -365,8 +415,10 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 			System.out.println("Successfully PencilColor Annotations Are Working");
 			//Callout Annotations
 			Thread.sleep(2000);
+			logger.info("Document marked");
 			driver.switchTo().defaultContent();
 			driver.findElement(ClickOnCallout).click();
+			logger.info("Clicked the callout annotation");
 			Thread.sleep(1000);
 			driver.switchTo().frame(0);
 			driver.switchTo().frame(0);
@@ -374,8 +426,10 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 			System.out.println("Successfully Callout Annotations Are Working");
 			//Erase Annotations
 			Thread.sleep(2000);
+			logger.info("Dacument mark undo");
 			driver.switchTo().defaultContent();
 			driver.findElement(ClickOnErase).click();
+			logger.info("Clicked the erase annotation");
 			Thread.sleep(1000);
 			driver.switchTo().frame(0);
 			driver.switchTo().frame(0);
@@ -385,13 +439,17 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 			Thread.sleep(2000);
 			driver.switchTo().defaultContent();
 			driver.findElement(ClickOnUndo).click();
+			logger.info("Clicked the undo annotation");
 			Thread.sleep(1000);
 			System.out.println("Successfully Undo Annotations Are Working");
 			Screenshots.usernamescreenshot(driver, "Member Annotations");
+			logger.info("Captured screenshot");
 			Thread.sleep(2000);
 			Screenshots.usernamescreenshot(Incognitodriver, "Witness Annotations");
+			logger.info("Captured screenshot");
 			//			ShowThumbnails Annotations
 			driver.findElement(ClickOnShowThumbnails).click();
+			logger.info("Clicked the thumbnail annotation");
 			Thread.sleep(1000);
 			driver.switchTo().frame(0);
 			driver.switchTo().frame(0);
@@ -411,8 +469,10 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 			driver.switchTo().defaultContent();
 			Thread.sleep(2000);
 			driver.findElement(StopPresentation).click();
+			logger.info("Clicked the stop presentation button");
 			Thread.sleep(10000);
 			driver.findElement(By.xpath("//div[@class='back_btn']")).click();
+			logger.info("Clicked the back button");
 			driver.switchTo().frame(0);
 		}
 
@@ -430,6 +490,7 @@ public class NonZoom_Arbitration_Session_With_Witness_PageObjects {
 			System.out.println("Failed Annotations Are Not Working");
 
 		}
+		logger.info("Validated all annotations");
 	}
 
 }

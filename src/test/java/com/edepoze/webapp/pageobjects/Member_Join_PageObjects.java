@@ -1,6 +1,9 @@
 package com.edepoze.webapp.pageobjects;
 
 import java.util.ArrayList;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import com.edepoze.utilitifiles.Screenshots;
@@ -9,8 +12,11 @@ import com.edepoze.utilitifiles.Screenshots;
 
 public class Member_Join_PageObjects {
 	WebDriver driver;
+	public static Logger logger;
 	public Member_Join_PageObjects(WebDriver driver) {
 		this.driver=driver;
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
 	}
 
 
@@ -32,13 +38,16 @@ public class Member_Join_PageObjects {
 	public void ClickOnMemberSession() {
 		driver.switchTo().frame(0);
 		driver.findElement(ClickOnMemberSession).click();
+		logger.info("Clicked the member sesssion");
 		Screenshots.usernamescreenshot(driver, "CaseSessionIDAndPasswordValidation");
+		logger.info("Captured screenshot");
 	}
 
 	public void CaptureMemberSessionId()  {
 
 		String Session=driver.findElement(CaptureSessionId).getText().split(" ")[1];
 		SessionID.add(Session);
+		logger.info("Captured member session ID");
 
 	}
 
@@ -61,8 +70,9 @@ public class Member_Join_PageObjects {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-
+		logger.info("Captured member session password");
 		driver.findElement(ClickOnViewPasscode).click();
+		logger.info("Clciked the view password");
 		driver.switchTo().defaultContent();
 		Thread.sleep(2000);
 		String passcode= driver.findElement(By.xpath("//span[@id='passcode']")).getText();
@@ -73,16 +83,19 @@ public class Member_Join_PageObjects {
 
 
 	public void ClickOnCases() {
-
 		driver.findElement(ClickOnCases).click();
+		logger.info("Clciked the cases");
 	}	
 
 	public void JoinSession() throws InterruptedException {	
-
 		driver.findElement(ClickOnJoinButton).click();
+		logger.info("Clciked the join button");
 		driver.findElement(EnterSessionID).sendKeys(SessionID.toArray(new String[0]));
+		logger.info("Entered the session ID");
 		driver.findElement(EnterSessionPassword).sendKeys(SessionPassword.toArray(new String[0]));
+		logger.info("Clciked the sessiom password");
 		driver.findElement(ClickOnJoin).click();
+		logger.info("Clciked the join");
 
 	}
 
@@ -92,6 +105,7 @@ public class Member_Join_PageObjects {
 		driver.switchTo().frame(0);
 		String JoinSession=driver.findElement(CaptureSessionId).getText().split(" ")[1];
 	    JoinSessionID.add(JoinSession);	
+	    logger.info("Captured session ID");
 		int SessionIDsize=SessionID.size();
 
 		for(int i=0; i<SessionIDsize; i++) {
@@ -105,6 +119,7 @@ public class Member_Join_PageObjects {
 				System.out.println("Failed To Join Session");
 			}
 		}
+		 logger.info("Validated join session");
 	}
 }
 

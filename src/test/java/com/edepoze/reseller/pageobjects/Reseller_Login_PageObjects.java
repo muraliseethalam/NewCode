@@ -42,22 +42,29 @@ public class Reseller_Login_PageObjects {
 		logger.info("Borwser launched");
 	}
 	public void ClickOnSave() throws Exception {
+		driver.findElement(ClickOnSave).click();
+		logger.info("Clicked the save button");
 	}
 	public void EnterConfirmPassword() throws Exception {
 		driver.findElement(ConfirmPassword).sendKeys(OutputData.EnterClientPassword());
+		logger.info("Confirm password entered");
 	}
 
 	public void EnterClientUsername() throws Exception {
 		driver.findElement(UserName).sendKeys(OutputData.EnterClientUserName());
+		logger.info("Client username entered");
 	}
 	public void EnterEnterClientPassword() throws Exception {
 		driver.findElement(Password).sendKeys(OutputData.EnterClientPassword());
+		logger.info("Client password entered");
 	}
 	public void EnterEnterpriseUserName() throws Exception {
 		driver.findElement(UserName).sendKeys(OutputData.EnterEnterpriseUserName());
+		logger.info("Enterprise unsername entered");
 	}
 	public void EnterEnterprisePassword() throws Exception {
 		driver.findElement(Password).sendKeys(OutputData.EnterEnterprisePassword());
+		logger.info("Enterprise password entered");
 	}
 
 	public void EnterUsername() throws Exception {
@@ -75,6 +82,7 @@ public class Reseller_Login_PageObjects {
 		String Getpassword=driver.findElement(UserName).getAttribute("value");
 		System.out.println(Getpassword);
 		obj.WriteExcel("Sheet1", Getpassword, 0, 1);
+		logger.info("Password getting..");
 
 		//		String Getpassword=driver.findElement(UserName).getText();
 		//		gettext.outdata(Getpassword);
@@ -87,6 +95,7 @@ public class Reseller_Login_PageObjects {
 	}
 	public void ForgotPassword() {
 		driver.findElement(ForgotPassword).click();
+		logger.info("Clicked the forgot password");
 	}
 
 	public void LoginValidation() throws InterruptedException {
@@ -119,7 +128,7 @@ public class Reseller_Login_PageObjects {
 			// TODO: handle exception
 			System.out.println("Client Login Failed");
 		}
-
+		logger.info("Validated client login");
 
 
 
@@ -131,15 +140,17 @@ public class Reseller_Login_PageObjects {
 			if(driver.findElement(By.xpath("//span[text()='Add Client']")).isDisplayed()){
 
 				Screenshots.usernamescreenshot(driver, "Resellerlogin");
+				logger.info("Screenshot captured");
 				System.out.println("Enterprise Login Failed");
 			}
 		} catch (Exception e) {
 
 			Screenshots.usernamescreenshot(driver, "Resellerlogin");
+			logger.info("Screenshot captured");
 			System.out.println("Enterprise Login is Success");
 		}
 
-
+		logger.info("Validated enterprise login");
 	}
 
 	public void AcceptTermsConditions() throws Exception {
@@ -147,8 +158,10 @@ public class Reseller_Login_PageObjects {
 		Thread.sleep(1000);
 		EventFiringWebDriver scrolldown=new EventFiringWebDriver(driver);
 		scrolldown.executeScript("document.querySelector('.tosPopup').scrollTop=1000");
+		logger.info("Scroll down");
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//input[@data-fullid='mainform.termsOfService.btnOK']")).click();	
+		logger.info("Clicked the terms of service button");
 
 	}
 

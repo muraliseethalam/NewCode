@@ -1,5 +1,7 @@
 package com.edepoze.webapp.pageobjects;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 /**
@@ -11,10 +13,12 @@ import org.openqa.selenium.WebDriver;
 public class CaseSession_All_Files_Validation_PageObjects {
 
 	WebDriver driver;
+	public static Logger logger;
 
 	public CaseSession_All_Files_Validation_PageObjects(WebDriver driver) {
-
 		this.driver=driver;
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
 
 	}
 
@@ -29,13 +33,16 @@ public class CaseSession_All_Files_Validation_PageObjects {
 	}
 	public void ClickOnMemberSession() {
 		driver.findElement(ClickOnMemberSession).click();
+		logger.info("Clicked the member session");
 	}
 
 	public void ClickOnMemberFolder() {
 		driver.findElement(ClickOnMemberFolder).click();
+		logger.info("Clicked the member folder");
 	}
 	public void ClickOnBackButton() {
 		driver.findElement(ClickOnBackButton).click();	
+		logger.info("Clicked the back button");
 	}
 	public void DocumentsValidation() throws InterruptedException {
 		int Documnets=driver.findElements(ClickOnDocuments).size();
@@ -56,5 +63,6 @@ public class CaseSession_All_Files_Validation_PageObjects {
 			driver.findElement(ClickOnBackButton).click();	
 			driver.switchTo().frame(0);
 		}
+		logger.info("Validated documents");
 	}
 }

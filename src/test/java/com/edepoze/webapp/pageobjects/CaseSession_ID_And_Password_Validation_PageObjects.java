@@ -6,6 +6,9 @@ import java.util.ArrayList;
  *
  */
 import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -17,10 +20,11 @@ import com.edepoze.utilitifiles.Screenshots;
 public class CaseSession_ID_And_Password_Validation_PageObjects {
 
 	WebDriver driver;
-
+	public static Logger logger;
 	public CaseSession_ID_And_Password_Validation_PageObjects(WebDriver driver) {
-
 		this.driver=driver;
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
 
 	}
 
@@ -41,15 +45,19 @@ public class CaseSession_ID_And_Password_Validation_PageObjects {
 		Thread.sleep(2000);
 		JavascriptExecutor js=(JavascriptExecutor)driver;
 		js.executeScript("window.scrollBy(0,1000)");
+		logger.info("Scroll down");
 	}
 
 	public void ClickOnClientCase() {
 		driver.findElement(ClickOnClientCase).click();
+		logger.info("Clicked the client case");
 	}
 
 	public void ClickOnClientSession() {
 		driver.findElement(ClickOnClientSession).click();
+		logger.info("Clicked the client session");
 		Screenshots.usernamescreenshot(driver, "CaseSessionIDAndPasswordValidation");
+		logger.info("Screenshot captured");
 	}
 
 	public void ClientCaseSessionIDCapture() throws Exception {
@@ -58,6 +66,7 @@ public class CaseSession_ID_And_Password_Validation_PageObjects {
 			String OptionName=ele.getText();
 			ClientCaseSessionID.add(OptionName);
 		}
+		logger.info("Captured client case session ID");
 	}
 
 	public void ClientCaseSessionPasswordCapture() throws Exception {
@@ -66,17 +75,21 @@ public class CaseSession_ID_And_Password_Validation_PageObjects {
 			String OptionName1=ele.getText();
 			ClientCaseSessionPassword.add(OptionName1);
 		}
+		logger.info("Captured client case session password");
 	}
 
 	public void ClickOnMemberSession() {
 		driver.switchTo().frame(0);
 		driver.findElement(ClickOnMemberSession).click();
+		logger.info("clicked the member session");
 		Screenshots.usernamescreenshot(driver, "CaseSessionIDAndPasswordValidation");
+		logger.info("Screenshot captured");
 	}
 
 	public void CaptureMemberSessionId() {
 		String getSessionId= driver.findElement(By.xpath("//p[@class='deposition_number']")).getText().split(" ")[1];
 		MemberCaseSessionID.add(getSessionId);
+		logger.info("Captured member session ID");
 	}
 
 	public void CaptureMemberPassword() {
@@ -100,18 +113,22 @@ public class CaseSession_ID_And_Password_Validation_PageObjects {
 			// TODO: handle exception
 		}
 		driver.switchTo().frame(0);
+		logger.info("Captured member session password");
 	}
 	public void PasswordCapture() throws InterruptedException {
 
 		driver.findElement(ClickOnViewPasscode).click();
+		logger.info("Clicked the view passcode");
 		driver.switchTo().defaultContent();  
 		Thread.sleep(3000);
 		Screenshots.usernamescreenshot(driver, "CaseSessionIDAndPasswordValidation");
+		logger.info("Screenshot captured");
 		List<WebElement> pws=driver.findElements(By.xpath("//span[@id='passcode']"));
 		for (WebElement ele : pws) {
 			String OptionName2=ele.getText();
 			MemberCaseSessionPassword.add(OptionName2);
 		}
+		logger.info("Captured password");
 	}
 
 
@@ -128,6 +145,7 @@ public class CaseSession_ID_And_Password_Validation_PageObjects {
 				System.out.println("Client Case Session ID and Member Case Session Id does not match");
 			}
 		}
+		logger.info("Compared between case session ID of client and member");
 	}
 
 	public void ComparisionBetweenCaseSessionPasswordofClientAndMember() throws Exception {
@@ -143,6 +161,7 @@ public class CaseSession_ID_And_Password_Validation_PageObjects {
 				System.out.println("Client Case Session Passcode and Member Case Session passcode does not match");
 			}
 		}
+		logger.info("Compared between case session password of client and member");
 	}
 }
 

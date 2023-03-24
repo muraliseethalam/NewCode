@@ -1,6 +1,9 @@
 package com.edepoze.reseller.pageobjects;
 
 import java.util.Random;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +21,7 @@ import com.github.javafaker.Faker;
 public class Reseller_AddClient_PageObjects {
 
 	OutputData getdata=new OutputData();
+	public static Logger logger;
 
 	WebDriver driver;
 	By AddClient = By.xpath("//span[text()='Add Client']");
@@ -50,13 +54,17 @@ public class Reseller_AddClient_PageObjects {
 
 	public  Reseller_AddClient_PageObjects(WebDriver driver) {
 		this.driver = driver;
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
 	}
 	public void getdata() throws Exception {
 		driver.findElement(AddClient).click();
+		
 
 	}	
 	public void ClickOnAddClient() throws Exception {
 		driver.findElement(AddClient).click();
+		logger.info("Clicked Add Client button");
 	}
 	public void EnterClientName() throws Exception {
 		String CName=faker.name().firstName();
@@ -64,23 +72,28 @@ public class Reseller_AddClient_PageObjects {
 		Thread.sleep(1000);
 		String GetClientName = driver.findElement(ClientName).getAttribute("value");
 		obj.WriteExcel("Sheet1", GetClientName, 3, 1);
+		logger.info("Client name entered");
 	}
 	public void EnterContactName() throws Exception {
 		String CName1=faker.name().nameWithMiddle();
 		driver.findElement(contactName).sendKeys("MAT"+CName1);
+		logger.info("Contact name entered");
 	}
 	public void ScroollDown() throws Exception {
 		JavascriptExecutor js=(JavascriptExecutor)driver;
 		js.executeScript("window.scrollBy(0,1000)");
+		logger.info("Scroll down");
 	}
 
 	public void EnterEmail() throws Exception {
 		String Email=RandomData.nextInt()+"@gmail.com";
 		driver.findElement(contactEmail).sendKeys(Email);
+		logger.info("Email entered");
 	}
 	public void EnterContactPhone() throws Exception {
 		String ContactPhone=faker.number().digits(10);
 		driver.findElement(contactPhone).sendKeys(ContactPhone);
+		logger.info("Contact phone number entered");
 	}
 	public void SelectCountryCode() throws Exception {
 		WebElement coutry = driver.findElement(By.name("countryCode"));
@@ -88,27 +101,33 @@ public class Reseller_AddClient_PageObjects {
 		Select select =new Select(coutry);
 		select.selectByVisibleText("United States");
 		Thread.sleep(2000);
+		logger.info("Country Code selected");
 	}
 	public void Enteraddress() throws Exception {
 		String Address=faker.address().state();
 		driver.findElement(address1).sendKeys(Address);
+		logger.info("Address entered");
 	}
 	public void Entercity() throws Exception {
 		String CityName=faker.address().cityName();
 		driver.findElement(city).sendKeys(CityName);
+		logger.info("City name entered");
 	}
 	public void SelectState() throws Exception {
 		WebElement coutry1 = driver.findElement(countrycode);
 		Thread.sleep(2000);
 		Select select1 =new Select(coutry1);
 		select1.selectByVisibleText("AK");
+		logger.info("State Selected");
 	}
 	public void EnterZip() throws Exception {
 		String ZipNumber=faker.address().zipCode();
 		driver.findElement(ZIP).sendKeys(ZipNumber);
+		logger.info("Zip code entered");
 	}
 	public void ClickOnNext() throws Exception {
 		driver.findElement(Next).click();
+		logger.info("Clicked the next button");
 	}
 	public void BasicInformationValidation() throws Exception {
 		//	 boolean Zip =driver.findElement(ZIP).isDisplayed();
@@ -116,12 +135,14 @@ public class Reseller_AddClient_PageObjects {
 		if(driver.findElement(ZIP).isDisplayed()) {
 			System.out.println("Failed At Basic Information To Create Client Account");
 			Screenshots.usernamescreenshot(driver, "AddClient");
+			logger.info("Screenshot captured");
 
 		}
 		else {
 			System.out.println("Success At Basic Information To Create Client Account");
 			Screenshots.usernamescreenshot(driver, "AddClient");
-
+			logger.info("Screenshot captured");
+			logger.info("Basic information Validated");
 
 		}
 
@@ -144,22 +165,26 @@ public class Reseller_AddClient_PageObjects {
 	public void EnterFirstName() throws Exception {
 		String firstname=faker.name().firstName();
 		driver.findElement(firstName).sendKeys(firstname);
+		logger.info("First name entered");
 	}
 	public void EnterLastName() throws Exception {
 		String lastname=faker.name().lastName();
 		driver.findElement(lastName).sendKeys(lastname);
+		logger.info("Last name entered");
 	}
 	public void Enteremail() throws Exception {
 		driver.findElement(Email).sendKeys(readconfig.AddClientEmail());
 		Thread.sleep(2000);
 		String Getemail=driver.findElement(Email).getAttribute("value");
 		obj.WriteExcel("Sheet1", Getemail, 4, 1);
+		logger.info("Email entered");
 
 	}
 	public void RandamUsername() {
 		Random Username=new Random();
 		String strinusername="sb"+ Username.nextInt();
 		driver.findElement(username).sendKeys(strinusername);
+		logger.info("User name entered");
 
 		//		String username=Random()+"sd";
 
@@ -171,22 +196,28 @@ public class Reseller_AddClient_PageObjects {
 		Thread.sleep(2000);
 		String GetuserName=driver.findElement(username).getAttribute("value");
 		obj.WriteExcel("Sheet1", GetuserName, 1, 1);
+		logger.info("User name entered");
 	}
 	public void Getusername() throws Exception {
 		driver.findElement(username).getText();
+		logger.info("Getting user name");
+		
 
 	}
 	public void EnterPassword() throws Exception {
 		driver.findElement(password).sendKeys("abc.123!");
 		String GetPassword="abc.123!";
 		obj.WriteExcel("Sheet1", GetPassword, 2, 1);
+		logger.info("Password entered");
 	}
 	public void EnterConfirmPassword() throws Exception {
 		driver.findElement(confirmPassword).sendKeys("abc.123!");
 //		String GetPassword="abc.123!";
+		logger.info("Confirm password entered");
 	}
 	public void ClickOnSave() throws Exception {
 		driver.findElement(Save).click();
+		logger.info("Clicked the save button");
 	}
 	public void AdminSetupValidation() throws Exception {
 
@@ -200,21 +231,27 @@ public class Reseller_AddClient_PageObjects {
 		else {
 			System.out.println("Failed At Admin Setup To Create Client Account");
 			Screenshots.usernamescreenshot(driver, "AddClient");
+			logger.info("Screenshot captured");
 
 
 		}
-
+		logger.info("Validated admin setup");
 
 	}
 
 	public void EnterClientID() throws Exception {
 		driver.findElement(searchText).sendKeys(OutputData.ClientName());
 		Thread.sleep(3000);
+		logger.info("Client ID entered");
 	}
 	public void ClikOnSearch() throws InterruptedException {
 		driver.findElement(Go).click();
 		Thread.sleep(3000);
 		Screenshots.usernamescreenshot(driver, "AddClient");
+		logger.info("Clicked search button");
+		logger.info("Screenshot captured");
+	
+		
 	}
 	//	public void ValidationForClientCreatedorNot() {
 	//		if(driver.findElement(Visible).isDisplayed()) {
@@ -234,6 +271,7 @@ public class Reseller_AddClient_PageObjects {
 
 		Assert.assertEquals(SearchCount, EqualCount, "Client Account Created Successfully");
 		System.out.println("Successfully Created Client Account");
+		logger.info("Client creation validated");
 	}
 
 

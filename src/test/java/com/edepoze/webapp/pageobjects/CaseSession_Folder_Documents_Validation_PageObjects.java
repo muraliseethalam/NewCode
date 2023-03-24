@@ -6,6 +6,9 @@ import java.util.ArrayList;
  *
  */
 import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -16,11 +19,12 @@ import com.edepoze.utilitifiles.Screenshots;
 public class CaseSession_Folder_Documents_Validation_PageObjects {
 
 	WebDriver driver;
+ public static Logger logger;
 
 	public CaseSession_Folder_Documents_Validation_PageObjects(WebDriver driver) {
-
 		this.driver=driver;
-
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
 	}
 
 	By ClickOnClientCase=By.xpath("//table[@class='tbl_info']//tr[1]//td[3]");
@@ -35,21 +39,26 @@ public class CaseSession_Folder_Documents_Validation_PageObjects {
 
 	public void ClickOnClientCase() {
 		driver.findElement(ClickOnClientCase).click();
+		logger.info("Clicked the client case");
 	}
 	public void ClickOnClientSession() {
 		driver.findElement(ClickOnClientSession).click();
+		logger.info("Clicked the client session");
 	}
 
 	public void ClickOnClientFolder() {
 		driver.findElement(ClickOnClientFolder).click();
+		logger.info("Clicked the client folder");
 		Screenshots.usernamescreenshot(driver, "CaseSessionFolderDocumentsValidation");
-
+		logger.info("Screenshot captured");
+		
 	}
 
 	public void ScrollDown() throws Exception {
 		Thread.sleep(2000);
 		JavascriptExecutor js=(JavascriptExecutor)driver;
 		js.executeScript("window.scrollBy(0,1000)");
+		logger.info("Scroll down");
 	}
 
 	public void ClientCaseSessionDocumentsCapture() {
@@ -59,19 +68,22 @@ public class CaseSession_Folder_Documents_Validation_PageObjects {
 			String OptionName=ele.getText();
 			ClientCaseSessionDocuments.add(OptionName);
 		}
+		logger.info("Captured client case session documents");
 
 	}
 
 	public void ClickOnMemberSession() {
 		driver.switchTo().frame(0);
 		driver.findElement(ClickOnMemberSession).click();
+		logger.info("Clicked the member session");
 
 	}
 
 	public void ClickOnMemberFolder() {
-
 		driver.findElement(ClickOnMemberFolder).click();
+		logger.info("Clicked the member folder");
 		Screenshots.usernamescreenshot(driver, "CaseSessionFolderDocumentsValidation");
+		logger.info("Screenshot captured");
 
 	}
 
@@ -83,6 +95,7 @@ public class CaseSession_Folder_Documents_Validation_PageObjects {
 			String OptionName1=ele.getText();
 			MemberCaseSessionDocuments.add(OptionName1);
 		}
+		logger.info("Capture member case session documents");
 
 	}	
 
@@ -105,7 +118,7 @@ public class CaseSession_Folder_Documents_Validation_PageObjects {
 
 
 		}
-
+		logger.info("Compared between case session documents of client and member");
 
 	}
 

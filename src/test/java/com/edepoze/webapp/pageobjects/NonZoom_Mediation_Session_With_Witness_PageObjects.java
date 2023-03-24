@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
@@ -36,6 +38,7 @@ import ru.yandex.qatools.ashot.comparison.ImageDiffer;
 public class NonZoom_Mediation_Session_With_Witness_PageObjects {
 
 	public static String getSessionId; 
+	public static Logger logger;
 	WebDriver driver;
 	WebDriver Incognitodriver;
 	ReadConfigPropertiesFile readconfig = new ReadConfigPropertiesFile();
@@ -43,6 +46,8 @@ public class NonZoom_Mediation_Session_With_Witness_PageObjects {
 
 	public NonZoom_Mediation_Session_With_Witness_PageObjects(WebDriver driver) {
 		this.driver=driver;
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
 	}
 	By ClickOnNonZoomDeposition=By.xpath("(//*[text()='Mediation'])[1]");
 	By ClickOnBeginSession=By.xpath("//div[@id='btn_start_deposition']");
@@ -97,20 +102,24 @@ public class NonZoom_Mediation_Session_With_Witness_PageObjects {
 
 	public void Driverquit() {
 		Incognitodriver.quit();
+		logger.info("Browser quitted");
 	}
 	public void ClickOnNonZoomDepositionSession() {
 		driver.switchTo().frame(0);
 		driver.findElement(ClickOnNonZoomDeposition).click();
+		logger.info("Clicked the non zoom deposition");
 	}
 
 
 	public void ClickOnIntroduceDocumentsFolder() {
 		driver.findElement(ClickOnIntroduceDocumentsFolder).click();
+		logger.info("Clicked the introduce documents folder");
 	}
 	public void BeginSession() {
 		try {
 			if(driver.findElement(ClickOnBeginSession).isDisplayed()) {
 				driver.findElement(ClickOnBeginSession).click();	
+				logger.info("Clicked the begin session button");
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -119,6 +128,7 @@ public class NonZoom_Mediation_Session_With_Witness_PageObjects {
 			driver.switchTo().defaultContent();
 			if(driver.findElement(ClickOnBeginSessionOk).isDisplayed()) {
 				driver.findElement(ClickOnBeginSessionOk).click();	
+				logger.info("Clicked the begin session Ok button");
 				//	driver.switchTo().frame(0);
 
 			}
@@ -139,16 +149,20 @@ public class NonZoom_Mediation_Session_With_Witness_PageObjects {
 			try {
 				if(driver.findElement(ClickOnMark).isDisplayed()) {
 					driver.findElement(ClickOnMark).click();	
+					logger.info("Clicked the mark button");
 				}
 			} catch (Exception e) {
 				driver.findElement(ClickOnIntroduce).click();
+				logger.info("Clicked the introduce button");
 			}
 
 			driver.findElement(WaitUntilDocumentOpen);
 			Thread.sleep(10000);
 			driver.findElement(CLickOnDistribute).click();
+			logger.info("Clicked the distribute button");
 			driver.findElement(WaitUntilDocumentOpen);
 			driver.findElement(ClickOnBackButton).click();
+			logger.info("Clicked the back button");
 			driver.switchTo().frame(0);
 
 
@@ -165,7 +179,7 @@ public class NonZoom_Mediation_Session_With_Witness_PageObjects {
 			OfficialExhibits.add(OptionName);
 		}
 
-
+		logger.info("Captured official exhibits documents of member");
 
 	}	
 
@@ -173,6 +187,7 @@ public class NonZoom_Mediation_Session_With_Witness_PageObjects {
 	public void WitnessLogin() throws InterruptedException {
 		driver.manage().window().setSize(new Dimension(700, 800));
 		driver.manage().window().setPosition(new Point(10,10));
+		logger.info("Captured official exhibits documents of member");
 
 
 
@@ -180,40 +195,53 @@ public class NonZoom_Mediation_Session_With_Witness_PageObjects {
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--incognito");
 			Incognitodriver=new ChromeDriver(options);
+			logger.info("Chrome browser launched");
 			Incognitodriver.manage().window().setSize(new Dimension(680, 800));
 			Incognitodriver.manage().window().setPosition(new Point(700,10));
+			logger.info("Browser minimized");
 		}
 		else if(Environment.contentEquals("firefox")) {
 			FirefoxOptions options = new FirefoxOptions();
 			options.addArguments("--incognito");
 			Incognitodriver=new FirefoxDriver(options);
+			logger.info("Firefox browser launched");
 			Incognitodriver.manage().window().setSize(new Dimension(680, 800));
 			Incognitodriver.manage().window().setPosition(new Point(700,10));
+			logger.info("Browser minimized");
 		}
 
 		else if(Environment.contentEquals("edgedriver")) {
 			EdgeOptions options = new EdgeOptions();
 			options.addArguments("-inprivate");
 			Incognitodriver=new EdgeDriver(options);
+			logger.info("Edge browser launched");
 			Incognitodriver.manage().window().setSize(new Dimension(680, 800));
 			Incognitodriver.manage().window().setPosition(new Point(700,10));
+			logger.info("Browser minimized");
 
 
 		}
 
 		Incognitodriver.get("https://app-" + readconfig.Environment() + ".edepoze.com/");
+		logger.info("URl entered");
 		Incognitodriver.manage().window().maximize();
-		Incognitodriver.findElement(ClickOnJoin).click();	
+		Incognitodriver.findElement(ClickOnJoin).click();
+		logger.info("Clicked the join button");
 		String getSessionId= driver.findElement(GetPasscode).getText().split(" ")[1];
 		Incognitodriver.findElement(EnterSessionID).sendKeys(getSessionId);
+		logger.info("Entered Session ID");
 		Incognitodriver.findElement(EnterName).sendKeys("Arun");
+		logger.info("Entered name");
 		Incognitodriver.findElement(ClickOnLogin).click();
 		Thread.sleep(4000);
+		logger.info("Clicked the login button");
 		driver.switchTo().defaultContent();
 		driver.findElement(ClickOnAllow).click();
 		Thread.sleep(2000);
+		logger.info("Clicked the allow button");
 		Incognitodriver.manage().window().setSize(new Dimension(680, 800));
 		Incognitodriver.manage().window().setPosition(new Point(700,10));
+		logger.info("Browser minimized");
 	}
 
 
@@ -225,6 +253,7 @@ public class NonZoom_Mediation_Session_With_Witness_PageObjects {
 		else {
 			System.out.println("Failed to Login Witness");
 		}
+		logger.info("Validated witness login");
 	}	
 
 	public void OfficialExhibitsDocumentsCaptureOfWitness() throws InterruptedException { 
@@ -237,6 +266,7 @@ public class NonZoom_Mediation_Session_With_Witness_PageObjects {
 			System.out.println(OptionName1);
 			MarkedExhibits.add(OptionName1);
 		}	
+		logger.info("Captured official exhibits documents of witness");
 	}
 
 
@@ -247,9 +277,11 @@ public class NonZoom_Mediation_Session_With_Witness_PageObjects {
 		int MarkedExhibitsCount=MarkedExhibits.size();
 		System.out.println("Marked Exhibits of Witness Count Is: "+MarkedExhibitsCount);
 		Screenshots.usernamescreenshot(driver, "MediationSessionWithWitness");
+		logger.info("Captured screenshot");
 		//MarkedExhibits.removeAll(OfficialExhibits);
 		Assert.assertEquals(OfficialExhibitsCount, MarkedExhibitsCount);
 		System.out.println("Marked Exibits Documents Format Of Member And Witness Matched");
+		logger.info("Compared between marked exibits of member and witness");
 
 	}
 
@@ -265,11 +297,13 @@ public class NonZoom_Mediation_Session_With_Witness_PageObjects {
 				//				Incognitodriver.findElement(WaitUtilDocumentsload);
 				Incognitodriver.findElement(ClickOnHighlightColor).click();
 				Thread.sleep(2000);
+				logger.info("Clicked highlight color button");
 				Incognitodriver.switchTo().frame(0);
 				Incognitodriver.switchTo().frame(0);
 				WebElement canvas =Incognitodriver.findElement(canvastag);
 				new Actions(Incognitodriver).moveToElement(canvas, -120, -120).clickAndHold().moveToElement(canvas, -270, -220).release().perform();
 				Incognitodriver.switchTo().defaultContent();
+				logger.info("Document marked");
 				Incognitodriver.findElement(WaitUntilDocumentsload);
 				Incognitodriver.findElement(ClickOnPencilColor).click();
 				Incognitodriver.switchTo().frame(0);
