@@ -30,6 +30,9 @@ public class Browse_Files_By_Clicking_Arrow_In_The_Left_Side_Arrow_PageObjects {
 		
 	}
 
+
+
+
 	By ClickOnMemberSession=By.xpath("//div[text()='MAT AFolder Validation Session']");
 	By ClickOnCase=By.xpath("//div[@class='cases_btn']");
 	By CapturingFolderNames=By.xpath("//div[@id='foldersList']//li//p[@class='folderName']");
@@ -48,6 +51,7 @@ public class Browse_Files_By_Clicking_Arrow_In_The_Left_Side_Arrow_PageObjects {
 
 	ArrayList<String> CaptureFolderName=new ArrayList<String>();
 	ArrayList<String> CaptureDocumentName=new ArrayList<String>();
+
 
 	ArrayList<String> CaptureLeftsideFolderName=new ArrayList<String>();
 	ArrayList<String> CaptureLeftDocumentNames=new ArrayList<String>();
@@ -95,6 +99,7 @@ public class Browse_Files_By_Clicking_Arrow_In_The_Left_Side_Arrow_PageObjects {
 		driver.findElement(ClickOnLeftSideArrow).click();
 		logger.info("Clicked the left side arrow");
 
+
 	}
 	public void CapturingLeftsideFolderName() throws InterruptedException {
 //		System.out.println("Krishna");
@@ -127,10 +132,5 @@ public class Browse_Files_By_Clicking_Arrow_In_The_Left_Side_Arrow_PageObjects {
 
 
 	}
-
-
-
-
-
 
 }

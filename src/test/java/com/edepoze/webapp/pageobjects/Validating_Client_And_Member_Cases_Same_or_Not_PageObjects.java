@@ -13,6 +13,8 @@ package com.edepoze.webapp.pageobjects;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,6 +23,7 @@ import com.edepoze.utilitifiles.Screenshots;
 // Validating Client Cases And Member Cases
 
 public class Validating_Client_And_Member_Cases_Same_or_Not_PageObjects {
+	public static Logger logger;
 	WebDriver driver;
 
 	By ClientCases=By.xpath("//div[@class='scrollTable']//table//tr//td[3]");
@@ -28,6 +31,8 @@ public class Validating_Client_And_Member_Cases_Same_or_Not_PageObjects {
 
 	public Validating_Client_And_Member_Cases_Same_or_Not_PageObjects(WebDriver driver) {
 		this.driver=driver;
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
 	}
 
 	ArrayList<String> ClientCase=new ArrayList<String>();
@@ -38,6 +43,7 @@ public class Validating_Client_And_Member_Cases_Same_or_Not_PageObjects {
 		for (WebElement WebElement : ListOfClientCases) {
 			String ClientCasesNames=WebElement.getText();
 			ClientCase.add(ClientCasesNames);	
+			logger.info("Captured client cases");
 		}
 	}
 
@@ -47,7 +53,9 @@ public class Validating_Client_And_Member_Cases_Same_or_Not_PageObjects {
 		for (WebElement WebElement : LidtOfMemberCases) {
 			String MemberCaseNames=WebElement.getText();
 			MemberCase.add(MemberCaseNames);	
+			logger.info("Captured member cases");
 			Screenshots.usernamescreenshot(driver, "ValidatingClientAndMemberCasesSameOrNot");
+			logger.info("Captured screenshot");
 		}	
 	}
 	public void ValidatingClientAndMemberCasesSameOrNot() {
@@ -65,7 +73,7 @@ public class Validating_Client_And_Member_Cases_Same_or_Not_PageObjects {
 			else {
 				System.out.println("Test Fail"+"\n"+"Excpeted Case is: "+ClientCase.get(i)+"\n"+"Actual Case Is: "+MemberCase.get(i));
 			}
-
+			logger.info("Validated client cases and member cases");
 		}
 
 	}
