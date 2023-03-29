@@ -16,6 +16,8 @@ import javax.mail.Session;
 import javax.mail.Store;
 import javax.mail.search.SearchTerm;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.jsoup.Jsoup;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -36,6 +38,7 @@ import ru.yandex.qatools.ashot.comparison.ImageDiffer;
 
 // Validating All Annotations
 public class Validating_Annotations_PageObjects {
+	public static Logger logger;
 	WebDriver driver;
 
 	By ClickOnSession=By.xpath("//div[text()='MAT AFolder Validation Session']");
@@ -75,31 +78,35 @@ public class Validating_Annotations_PageObjects {
 
 	public Validating_Annotations_PageObjects(WebDriver driver) {
 		this.driver=driver;
+		logger = Logger.getLogger("eDepoze");
+		PropertyConfigurator.configure("Log4j.properties");
 
 	}
 
 	ArrayList<String>SubjectName=new ArrayList<String>();
 	public static String Subjectline=null;
 
-	
-
-
 	public void ClickOnSession() {
 		driver.switchTo().frame(0);
 		driver.findElement(ClickOnSession).click();
+		logger.info("Clicked on session");
 	}
 	public void ClickOnFolder() {
 		driver.findElement(ClickOnFolder).click();
+		logger.info("Clicked on folder");
 	}
 	public void ClickOnDocument() {
 		driver.findElement(ClickOnDocument).click();
+		logger.info("Clicked on document");
 	}
 	public void ArrowColorAnnotations() throws InterruptedException {
 		driver.switchTo().defaultContent();
 		driver.findElement(By.xpath("//div[text()='Loading...']"));
 		Thread.sleep(3000);
 		Screenshots.usernamescreenshot(driver, "Before Annotations");
+		logger.info("Captured screenshot");
 		driver.findElement(ClickOnArrowColor).click();
+		logger.info("Clicked on arrow annotation button");
 		driver.switchTo().frame(0);
 		driver.switchTo().frame(0);
 		WebElement canvas =driver.findElement(canvastag);
@@ -118,6 +125,7 @@ public class Validating_Annotations_PageObjects {
 	public void HighlightColorAnnotations() throws InterruptedException {
 		driver.switchTo().defaultContent();
 		driver.findElement(ClickOnHighlightColor).click();
+		logger.info("Clicked on highlight annotation button");
 		driver.switchTo().frame(0);
 		driver.switchTo().frame(0);
 		WebElement canvas =driver.findElement(canvastag);
@@ -127,6 +135,7 @@ public class Validating_Annotations_PageObjects {
 	public void PenciltColorAnnotations() throws InterruptedException {
 		driver.switchTo().defaultContent();
 		driver.findElement(ClickOnPencilColor).click();
+		logger.info("Clicked on pencil annotationbutton");
 		driver.switchTo().frame(0);
 		driver.switchTo().frame(0);
 		WebElement canvas =driver.findElement(canvastag);
@@ -136,17 +145,21 @@ public class Validating_Annotations_PageObjects {
 	public void NoteAnnotations() throws InterruptedException {
 		driver.switchTo().defaultContent();
 		driver.findElement(ClickOnNote).click();
+		logger.info("Clicked on note annotation button");
 		driver.switchTo().frame(0);
 		driver.switchTo().frame(0);
 		WebElement canvas =driver.findElement(canvastag);
 		new Actions(driver).moveToElement(canvas, -100, -100).clickAndHold().moveToElement(canvas, -150, -100).release().perform();
 		driver.findElement(EnterNote).sendKeys("Sample Test Note");
+		logger.info("Entered note");
 		driver.findElement(ClickOnCloseNote).click();
+		logger.info("Clicked on close note button");
 		System.out.println("Success Note Annotations Working");
 	}
 	public void CalloutAnnotations() throws InterruptedException {
 		driver.switchTo().defaultContent();
 		driver.findElement(ClickOnCallout).click();
+		logger.info("Clicked on callout button");
 		driver.switchTo().frame(0);
 		driver.switchTo().frame(0);
 		WebElement canvas =driver.findElement(canvastag);
@@ -156,6 +169,7 @@ public class Validating_Annotations_PageObjects {
 	public void EraseAnnotations() throws InterruptedException {
 		driver.switchTo().defaultContent();
 		driver.findElement(ClickOnErase).click();
+		logger.info("Clicked on erase annotation button");
 		driver.switchTo().frame(0);
 		driver.switchTo().frame(0);
 		WebElement canvas =driver.findElement(canvastag);
@@ -165,11 +179,14 @@ public class Validating_Annotations_PageObjects {
 	public void UndoAnnotations() throws InterruptedException {
 		driver.switchTo().defaultContent();
 		driver.findElement(ClickOnUndo).click();
+		logger.info("Clicked on undo annotation button");
 		System.out.println("Success Undo Annotations Working");
 		Screenshots.usernamescreenshot(driver, "After Annotations");
+		logger.info("Captured screenshot");
 	}
 	public  void ShowThumbnailsAnnotations() throws InterruptedException{
 		driver.findElement(ClickOnShowThumnails).click();
+		logger.info("Clicked on show thumbnails annotation button");
 		driver.switchTo().frame(0);
 		driver.switchTo().frame(0);
 		String Size=driver.findElement(By.xpath("//span[@id='page-total']")).getText();
@@ -177,6 +194,7 @@ public class Validating_Annotations_PageObjects {
 		int number = Integer.parseInt(Size);
 		for(int i=0; i<number; i++) {
 			driver.findElement(ClickOnNext).click();
+			logger.info("Clicked on next");
 		}
 		String Text=driver.findElement(By.xpath("(//div[@class='thumb-page-number ng-binding'])[1]")).getText();
 		Assert.assertEquals(Size, Text);
@@ -199,7 +217,7 @@ public class Validating_Annotations_PageObjects {
 			System.out.println("Failed Annotations Are Not Working");
 		}
 
-
+		logger.info("Validated annotations");
 	}
 	public void PageNumber() throws InterruptedException {
 		driver.switchTo().defaultContent();
@@ -207,26 +225,32 @@ public class Validating_Annotations_PageObjects {
 		driver.switchTo().frame(0);
 		driver.switchTo().frame(0);
 		driver.findElement(Pagenumbers).click();
+		logger.info("Clicked on  page number button");
 	}
 	public void EnterPageNumber() {
 		driver.findElement(EnterPageNumber).sendKeys("2");
+		logger.info("Entered page number");
 	}
 	public void GotoPage() {
 		driver.findElement(GotoPage).click();
+		logger.info("Clicked on go to page button");
 	}
 	public void PageNumberValidation() {
 		String Size=driver.findElement(By.xpath("//span[@id='page-num']")).getText();
 		String Enternumber="2";
 		Assert.assertEquals(Size, Enternumber);
 		System.out.println("Successfullty PageNumber Working");
+		logger.info("Validated page numbers");
 	}
 
 	public void ClikOnEmail() {
 		driver.switchTo().defaultContent();
 		driver.findElement(ClikOnEmail).click();
+		logger.info("Clicked on email");
 	}
 	public void EnterToEmailId() throws InterruptedException {
 		driver.findElement(ToEmailId).sendKeys("edepozeautomation@gmail.com");
+		logger.info("Entered Email ID");
 		Thread.sleep(2000);
 		String GetSubjectName=driver.findElement(By.xpath("//li[@class='type_pdf']")).getText();
 		Subjectline=GetSubjectName;
@@ -235,6 +259,7 @@ public class Validating_Annotations_PageObjects {
 	}
 	public void ClickOnSend() throws InterruptedException {
 		driver.findElement(ClickOnSend).click();
+		logger.info("Clicked on send");
 		System.out.println("Successfully Mail Sent");
 		Thread.sleep(5000);
 	}
@@ -242,13 +267,16 @@ public class Validating_Annotations_PageObjects {
 		driver.switchTo().frame(0);
 		driver.switchTo().frame(0);
 		driver.findElement(ClickZoomin).click();
+		logger.info("Clicked on zoom in and zoom out annotation button");
 		int ZoomSize=driver.findElements(ZoomInZoomOut).size();
 		
 		for(int i=0; i<ZoomSize; i++) {
 			Thread.sleep(2000);
 			int zooms=i+1;
 			driver.findElement(ClickZoomin).click();
+			logger.info("Clicked on zoom in and zoom out annotation button");
 			driver.findElement(By.xpath("(//select[@id='scale-select']//option)["+zooms+"]")).click();
+			
 		}
 		
 	
@@ -347,6 +375,8 @@ public class Validating_Annotations_PageObjects {
 			ex.printStackTrace();
 			System.out.println("Could not connect to the message store.");
 		}
+		
+		logger.info("Serched email");
 	}
 
 	/**
