@@ -12,9 +12,12 @@ import org.apache.log4j.PropertyConfigurator;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+import java.io.File;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -28,16 +31,26 @@ public class BaseClass {
 	public static WebDriver driver;
 	WebDriver Incognitodriver;
 	WebDriver Firefoxdriver;
-	public static Logger logger;
+//	public static Logger logger;
+	
+	private static final Logger logger = Logger.getLogger(BaseClass.class);
+	SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMMyyyy", Locale.ENGLISH);
+    Date currentDate = new Date();
+    String logDir = dateFormat.format(currentDate);
+   
 	@BeforeMethod
 //	LaunchingThe Respective Browser
 	public void Browserlaunch() throws Exception {
+		 File folder = new File("./Logs");
+		
 		ReadConfigPropertiesFile readconfig = new ReadConfigPropertiesFile();
 		String Environment = readconfig.BrowserName();
 		
-		logger = Logger.getLogger("eDepoze");
+		 System.setProperty("log.dir", folder+"//"+logDir);
+		
+//		logger = Logger.getLogger("eDepoze");
 		PropertyConfigurator.configure("Log4j.properties");
-		logger.info("Browser launched");
+		logger.info("Borwser launched");
 
 		if (Environment.contentEquals("chrome")) {
 			ChromeOptions options = new ChromeOptions();
@@ -92,6 +105,7 @@ public class BaseClass {
 //	public void quit(){
 //
 //		driver.quit();
+//	logger.info("Borwser closed");
 //	}
 	@AfterMethod
 	public void FaildScreenshotCapture1(ITestResult tr){
