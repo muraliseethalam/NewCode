@@ -8,12 +8,12 @@
 		
 		   <class name="com.edepoze.reseller.test.scenarios.Reseller_Login" />
 			 <class name="com.edepoze.reseller.test.scenarios.Reseller_Add_Enterprise" /> 
-			<!--<class name="com.edepoze.reseller.test.scenarios.Reseller_Enterprise_Mail_Password_Setup" />
+			<class name="com.edepoze.reseller.test.scenarios.Reseller_Enterprise_Mail_Password_Setup" />
 			<class name="com.edepoze.reseller.test.scenarios.Reseller_Enterprise_Accounts_Delete" />
 			<class name="com.edepoze.reseller.test.scenarios.Reseller_Add_Client" />
 			<class name="com.edepoze.reseller.test.scenarios.Reseller_Client_Mail_Password_Setup" />
 			<class name="com.edepoze.reseller.test.scenarios.Reseller_Clients_Account_Activate_Deactivate" />
-			<class name="com.edepoze.reseller.test.scenarios.Reseller_Home_Page_Sorting_Test" />-->
+			<class name="com.edepoze.reseller.test.scenarios.Reseller_Home_Page_Sorting_Test" />
 			
 			
 		    
@@ -22,7 +22,7 @@
 			<class name="com.edepoze.reseller.test.scenarios.Reseller_Add_Multiple_Client_For_PaginationTesting" />
 			<class name="com.edepoze.reseller.test.scenarios.Reseller_Home_Page_Pagination" />-->
 			
-		 <!-- 	<class name="com.edepoze.client.test.scenarios.Client_Login" />
+		       <class name="com.edepoze.client.test.scenarios.Client_Login" />
 			<class name="com.edepoze.client.test.scenarios.Client_Add_New_Case" />
 			<class name="com.edepoze.client.test.scenarios.Client_Case_Edit" />
 			<class name="com.edepoze.client.test.scenarios.Client_Home_Page_Sorting" />
@@ -95,7 +95,7 @@
 			<class name="com.edepoze.webapp.test.scenarios.Non_Zoom_Mediation_Session_With_Witness"/>
 			<class name="com.edepoze.webapp.test.scenarios.Non_Zoom_Arbitration_Session_With_Witness"/>
 			<class name="com.edepoze.webapp.test.scenarios.Non_Zoom_Deposition_Session_With_Witness_And_Guest"/>
-			<class name="com.edepoze.webapp.test.scenarios.Non_Zoom_WitnessPrep_Session_With_Witness_And_Guest" />-->
+			<class name="com.edepoze.webapp.test.scenarios.Non_Zoom_WitnessPrep_Session_With_Witness_And_Guest" />
 		
 		</classes>
 	</test>
