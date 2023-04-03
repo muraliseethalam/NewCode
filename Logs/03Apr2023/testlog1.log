@@ -1,0 +1,15 @@
+2023-04-03 14:44:05,788 [main] INFO com.edepoze.utilitifiles.BaseClass - Borwser launched
+2023-04-03 14:44:11,799 [main] INFO eDepoze - Username Entered
+2023-04-03 14:44:13,912 [main] INFO eDepoze - Password Entered 
+2023-04-03 14:44:13,989 [main] INFO eDepoze - Clicked the login button
+2023-04-03 14:44:17,147 [main] INFO eDepoze - Reseller logedin successfully
+2023-04-03 14:44:33,199 [main] INFO com.edepoze.utilitifiles.BaseClass - Borwser launched
+2023-04-03 14:44:39,050 [main] INFO eDepoze - Username Entered
+2023-04-03 14:44:41,166 [main] INFO eDepoze - Password Entered 
+2023-04-03 14:44:41,266 [main] INFO eDepoze - Clicked the login button
+2023-04-03 14:44:44,548 [main] INFO eDepoze - Reseller logedin successfully
+2023-04-03 14:46:31,402 [main] INFO com.edepoze.utilitifiles.BaseClass - Borwser launched
+2023-04-03 14:46:38,205 [main] INFO eDepoze - Username Entered
+2023-04-03 14:46:40,330 [main] INFO eDepoze - Password Entered 
+2023-04-03 14:46:40,413 [main] INFO eDepoze - Clicked the login button
+2023-04-03 14:46:43,845 [main] INFO eDepoze - Reseller logedin successfully
