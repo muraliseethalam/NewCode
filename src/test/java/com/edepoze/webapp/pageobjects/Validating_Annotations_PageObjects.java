@@ -4,7 +4,10 @@ package com.edepoze.webapp.pageobjects;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Properties;
 
 import javax.imageio.ImageIO;
@@ -203,8 +206,11 @@ public class Validating_Annotations_PageObjects {
 
 
 	public void AnnotationsValidation() throws IOException {
-		BufferedImage BeforeAnnotationImage = ImageIO.read(new File(System.getProperty("user.dir") +"\\Screenshots\\Before Annotations.png"));
-		BufferedImage AfterAnnotationImage = ImageIO.read(new File(System.getProperty("user.dir") +"\\Screenshots\\After Annotations.png"));
+		  SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMMyyyy", Locale.ENGLISH);
+          Date currentDate = new Date();
+          String folderName = dateFormat.format(currentDate);
+		BufferedImage BeforeAnnotationImage = ImageIO.read(new File(System.getProperty("user.dir") +"\\Screenshots\\"+folderName+"\\"+"Before Annotations.png"));
+		BufferedImage AfterAnnotationImage = ImageIO.read(new File(System.getProperty("user.dir") +"\\Screenshots\\"+folderName+"\\"+"After Annotations.png"));
 
 
 		ImageDiffer imgDiff = new ImageDiffer();

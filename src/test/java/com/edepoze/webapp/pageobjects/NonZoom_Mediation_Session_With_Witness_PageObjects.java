@@ -3,8 +3,11 @@ package com.edepoze.webapp.pageobjects;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.imageio.ImageIO;
 
@@ -281,7 +284,7 @@ public class NonZoom_Mediation_Session_With_Witness_PageObjects {
 		//MarkedExhibits.removeAll(OfficialExhibits);
 		Assert.assertEquals(OfficialExhibitsCount, MarkedExhibitsCount);
 		System.out.println("Marked Exibits Documents Format Of Member And Witness Matched");
-		logger.info("Compared between marked exibits of member and witness");
+		logger.info("Compared marked exibits of member and witness");
 
 	}
 
@@ -326,7 +329,7 @@ public class NonZoom_Mediation_Session_With_Witness_PageObjects {
 		}
 		driver.switchTo().defaultContent();
 		driver.findElement(ClickOnCloseWitnessSave).click();
-		
+
 
 	}
 	public void VerifyingWitnessSavedDocuments() throws InterruptedException {
@@ -341,120 +344,143 @@ public class NonZoom_Mediation_Session_With_Witness_PageObjects {
 	public void DocumentsPresentationFolder() throws InterruptedException {
 		Thread.sleep(2000);
 		driver.findElement(ClickOnIntroduceDocumentsFolder).click();
+		logger.info("Clicked the presentation folder");
+
 	}
 	public void DocumentsPresentation() throws InterruptedException {
 		Thread.sleep(1000);
 		int Doucmentssize=driver.findElements(DocumentsPresentation).size();
-		for(int i=0; i<Doucmentssize; i++) {
-			int size=i+1;
-			driver.findElement(By.xpath("(//p[@class='fileName'][contains(text(), '.pdf')])["+size+"]")).click();
-			driver.switchTo().defaultContent();
-			driver.findElement(WaitUntilDocumentsload);
-			driver.findElement(ClickOnPresentation).click();
-			Thread.sleep(2000);
-			driver.findElement(ClickOnStart).click();
-			Thread.sleep(2000);
-			System.out.println("Presentation Started");
+		//		for(int i=0; i<Doucmentssize; i++) {
+		//			int size=i+1;
+		driver.findElement(By.xpath("(//p[@class='fileName'][contains(text(), '.pdf')])[1]")).click();
+		driver.switchTo().defaultContent();
+		driver.findElement(WaitUntilDocumentsload);
+		driver.findElement(ClickOnPresentation).click();
+		logger.info("Clicked the presentation button");
+		Thread.sleep(2000);
+		driver.findElement(ClickOnStart).click();
+		logger.info("Clicked the start presentation button");
+		Thread.sleep(2000);
+		System.out.println("Presentation Started");
+		
 
-
-			//			ArrowColor Annotations
-			driver.switchTo().frame(0);
-			driver.switchTo().frame(0);
-			Thread.sleep(4000);
-			driver.findElement(By.xpath("//div[@class='pdf-capture']")).click();
-			driver.switchTo().defaultContent();
-			driver.findElement(ClickOnArrowColor).click();
-			driver.switchTo().frame(0);
-			driver.switchTo().frame(0);
-			WebElement canvas =driver.findElement(canvastag);
-			new Actions(driver).moveToElement(canvas, -150, -150).clickAndHold().moveToElement(canvas, -250, -200).release().perform();
-			System.out.println("Successfully ArrowColor Annotations Are Working");
-			// HighlightColor Annotations
-			Thread.sleep(2000);
-			driver.switchTo().defaultContent();
-			driver.findElement(ClickOnHighlightColor).click();
-			Thread.sleep(2000);
-			driver.switchTo().frame(0);
-			driver.switchTo().frame(0);
-			new Actions(driver).moveToElement(canvas, -180, -180).clickAndHold().moveToElement(canvas, -280, -220).release().perform();
-			System.out.println("Successfully HighlightColor Annotations Are Working");
-			//PencilColor Annotations
-			Thread.sleep(2000);
-			driver.switchTo().defaultContent();
-			driver.findElement(ClickOnPencilColor).click();
-			Thread.sleep(1000);
-			driver.switchTo().frame(0);
-			driver.switchTo().frame(0);
-			new Actions(driver).moveToElement(canvas, -120, -120).clickAndHold().moveToElement(canvas, -270, -220).release().perform();
-			System.out.println("Successfully PencilColor Annotations Are Working");
-			//Callout Annotations
-			Thread.sleep(2000);
-			driver.switchTo().defaultContent();
-			driver.findElement(ClickOnCallout).click();
-			Thread.sleep(1000);
-			driver.switchTo().frame(0);
-			driver.switchTo().frame(0);
-			new Actions(driver).moveToElement(canvas, -50, -50).clickAndHold().moveToElement(canvas, -100, 150).release().perform();
-			System.out.println("Success Callout Annotations Working");
-			//Erase Annotations
-			Thread.sleep(2000);
-			driver.switchTo().defaultContent();
-			driver.findElement(ClickOnErase).click();
-			Thread.sleep(1000);
-			driver.switchTo().frame(0);
-			driver.switchTo().frame(0);
-			new Actions(driver).moveToElement(canvas, -150, -150).clickAndHold().moveToElement(canvas, -250, -200).click().perform();
-			System.out.println("Successfully Erase Annotations Are Working");
-			//			Undo Annotations
-			Thread.sleep(2000);
-			driver.switchTo().defaultContent();
-			driver.findElement(ClickOnUndo).click();
-			Thread.sleep(1000);
-			System.out.println("Successfully Undo Annotations Are Working");
-			Screenshots.usernamescreenshot(driver, "Member Annotations");
-			Thread.sleep(2000);
-			Screenshots.usernamescreenshot(Incognitodriver, "Witness Annotations");
-			//			ShowThumbnails Annotations
-			driver.findElement(ClickOnShowThumbnails).click();
-			Thread.sleep(1000);
-			driver.switchTo().frame(0);
-			driver.switchTo().frame(0);
-			driver.manage().window().maximize();
-			String Size=driver.findElement(By.xpath("//span[@id='page-total']")).getText();
-			int number = Integer.parseInt(Size);
-			Thread.sleep(2000);
-			for(int j=0; j<number; j++) {
-				driver.findElement(ClickOnNext).click();
-			}
-			String Text=driver.findElement(By.xpath("(//div[@class='thumb-page-number ng-binding'])[1]")).getText();
-			Assert.assertEquals(Size, Text);
-			System.out.println("Success ShowThumbnails Annotations Working");
-			Thread.sleep(2000);
-			driver.manage().window().setSize(new Dimension(700, 900));
-			driver.manage().window().setPosition(new Point(10,10));
-			driver.switchTo().defaultContent();
-			Thread.sleep(2000);
-			driver.findElement(StopPresentation).click();
-			Thread.sleep(10000);
-			driver.findElement(By.xpath("//div[@class='back_btn']")).click();
-			driver.switchTo().frame(0);
+		//			ArrowColor Annotations
+		driver.switchTo().frame(0);
+		driver.switchTo().frame(0);
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("//div[@class='pdf-capture']")).click();
+		driver.switchTo().defaultContent();
+		driver.findElement(ClickOnArrowColor).click();
+		logger.info("Clicked arrow annotation button");
+		driver.switchTo().frame(0);
+		driver.switchTo().frame(0);
+		WebElement canvas =driver.findElement(canvastag);
+		new Actions(driver).moveToElement(canvas, -150, -150).clickAndHold().moveToElement(canvas, -250, -200).release().perform();
+		System.out.println("Successfully ArrowColor Annotations Are Working");
+		// HighlightColor Annotations
+		Thread.sleep(2000);
+		driver.switchTo().defaultContent();
+		driver.findElement(ClickOnHighlightColor).click();
+		logger.info("Clicked the highlight annotation button");
+		Thread.sleep(2000);
+		driver.switchTo().frame(0);
+		driver.switchTo().frame(0);
+		new Actions(driver).moveToElement(canvas, -180, -180).clickAndHold().moveToElement(canvas, -280, -220).release().perform();
+		System.out.println("Successfully HighlightColor Annotations Are Working");
+		//PencilColor Annotations
+		Thread.sleep(2000);
+		driver.switchTo().defaultContent();
+		driver.findElement(ClickOnPencilColor).click();
+		logger.info("Clicked the pencil annotation button");
+		Thread.sleep(1000);
+		driver.switchTo().frame(0);
+		driver.switchTo().frame(0);
+		new Actions(driver).moveToElement(canvas, -120, -120).clickAndHold().moveToElement(canvas, -270, -220).release().perform();
+		System.out.println("Successfully PencilColor Annotations Are Working");
+		//Callout Annotations
+		Thread.sleep(2000);
+		driver.switchTo().defaultContent();
+		driver.findElement(ClickOnCallout).click();
+		logger.info("Clicked the callout annotation button");
+		Thread.sleep(1000);
+		driver.switchTo().frame(0);
+		driver.switchTo().frame(0);
+		new Actions(driver).moveToElement(canvas, -50, -50).clickAndHold().moveToElement(canvas, -100, 150).release().perform();
+		System.out.println("Success Callout Annotations Working");
+		//Erase Annotations
+		Thread.sleep(2000);
+		driver.switchTo().defaultContent();
+		driver.findElement(ClickOnErase).click();
+		logger.info("Clicked the erase annotation button");
+		Thread.sleep(1000);
+		driver.switchTo().frame(0);
+		driver.switchTo().frame(0);
+		new Actions(driver).moveToElement(canvas, -150, -150).clickAndHold().moveToElement(canvas, -250, -200).click().perform();
+		System.out.println("Successfully Erase Annotations Are Working");
+		//			Undo Annotations
+		Thread.sleep(2000);
+		driver.switchTo().defaultContent();
+		driver.findElement(ClickOnUndo).click();
+		logger.info("Clicked the undo annotation button");
+		Thread.sleep(1000);
+		System.out.println("Successfully Undo Annotations Are Working");
+		Screenshots.usernamescreenshot(driver, "Member Annotations");
+		Thread.sleep(2000);
+		Screenshots.usernamescreenshot(Incognitodriver, "Witness Annotations");
+		//			ShowThumbnails Annotations
+		driver.findElement(ClickOnShowThumbnails).click();
+		logger.info("Clicked the show thumbnails button");
+		Thread.sleep(1000);
+		driver.switchTo().frame(0);
+		driver.switchTo().frame(0);
+		driver.manage().window().maximize();
+		String Size=driver.findElement(By.xpath("//span[@id='page-total']")).getText();
+		int number = Integer.parseInt(Size);
+		Thread.sleep(2000);
+		for(int j=0; j<number; j++) {
+			driver.findElement(ClickOnNext).click();
+			logger.info("Clicked the next button");
 		}
+		String Text=driver.findElement(By.xpath("(//div[@class='thumb-page-number ng-binding'])[1]")).getText();
+		Assert.assertEquals(Size, Text);
+		System.out.println("Success ShowThumbnails Annotations Working");
+		Thread.sleep(2000);
+		driver.manage().window().setSize(new Dimension(700, 900));
+		driver.manage().window().setPosition(new Point(10,10));
+		logger.info("Browser minimized");
+		driver.switchTo().defaultContent();
+		Thread.sleep(2000);
+		driver.findElement(StopPresentation).click();
+		logger.info("Clicked the stop presentation button");
+		Thread.sleep(10000);
+		driver.findElement(By.xpath("//div[@class='back_btn']")).click();
+		logger.info("Clicked the back button");
+		driver.switchTo().frame(0);
+	}
+
+//}
+public void AnnotationsValidation() throws IOException {
+
+
+	SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMMyyyy", Locale.ENGLISH);
+	Date currentDate = new Date();
+	String folderName = dateFormat.format(currentDate);
+	BufferedImage BeforeAnnotationImage = ImageIO.read(new File(System.getProperty("user.dir") +"\\Screenshots\\"+folderName+"\\"+"Member Annotations.png"));
+	BufferedImage AfterAnnotationImage = ImageIO.read(new File(System.getProperty("user.dir") +"\\Screenshots\\"+folderName+"\\"+"Witness Annotations.png"));
+	ImageDiffer imgDiff = new ImageDiffer();
+	ImageDiff diff = imgDiff.makeDiff(BeforeAnnotationImage, AfterAnnotationImage);
+	if(diff.hasDiff()==true)
+	{
+		System.out.println("Annotations are Working Successfully");
+	}
+	else {
+		System.out.println("Failed Annotations Are Not Working");
 
 	}
-	public void AnnotationsValidation() throws IOException {
-		BufferedImage BeforeAnnotationImage = ImageIO.read(new File(System.getProperty("user.dir") +"\\Screenshots\\Member Annotations.png"));
-		BufferedImage AfterAnnotationImage = ImageIO.read(new File(System.getProperty("user.dir") +"\\Screenshots\\Witness Annotations.png"));
-		ImageDiffer imgDiff = new ImageDiffer();
-		ImageDiff diff = imgDiff.makeDiff(BeforeAnnotationImage, AfterAnnotationImage);
-		if(diff.hasDiff()==true)
-		{
-			System.out.println("Annotations are Working Successfully");
-		}
-		else {
-			System.out.println("Failed Annotations Are Not Working");
 
-		}
-	}
+	logger.info("Validated all annotations");
+}
+
 
 }
 

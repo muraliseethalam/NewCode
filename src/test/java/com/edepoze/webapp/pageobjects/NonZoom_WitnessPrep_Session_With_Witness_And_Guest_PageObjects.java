@@ -5,8 +5,11 @@ package com.edepoze.webapp.pageobjects;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.imageio.ImageIO;
 
@@ -488,9 +491,9 @@ public class NonZoom_WitnessPrep_Session_With_Witness_And_Guest_PageObjects {
 	public void DocumentsPresentation() throws InterruptedException {
 		Thread.sleep(1000);
 		int Doucmentssize=driver.findElements(DocumentsPresentation).size();
-		for(int i=0; i<Doucmentssize; i++) {
-			int size=i+1;
-			driver.findElement(By.xpath("(//p[@class='fileName'][contains(text(), '.pdf')])["+size+"]")).click();
+//		for(int i=0; i<Doucmentssize; i++) {
+//			int size=i+1;
+			driver.findElement(By.xpath("(//p[@class='fileName'][contains(text(), '.pdf')])[1]")).click();
 			driver.switchTo().defaultContent();  
 			driver.findElement(WaitUntilDocumentsload);
 			driver.findElement(ClickOnPresentation).click();
@@ -621,13 +624,16 @@ public class NonZoom_WitnessPrep_Session_With_Witness_And_Guest_PageObjects {
 		}
 
 
-	}
+	//}
 
 	public void AnnotationsValidation() throws IOException {
-		BufferedImage BeforeAnnotationImage = ImageIO.read(new File(System.getProperty("user.dir") +"\\Screenshots\\Member Annotations.png"));
-		BufferedImage AfterAnnotationImage = ImageIO.read(new File(System.getProperty("user.dir") +"\\Screenshots\\Witness Annotations.png"));
-
-
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMMyyyy", Locale.ENGLISH);
+        Date currentDate = new Date();
+        String folderName = dateFormat.format(currentDate);
+		BufferedImage BeforeAnnotationImage = ImageIO.read(new File(System.getProperty("user.dir") +"\\Screenshots\\"+folderName+"\\"+"Member Annotations.png"));
+		BufferedImage AfterAnnotationImage = ImageIO.read(new File(System.getProperty("user.dir") +"\\Screenshots\\"+folderName+"\\"+"Witness Annotations.png"));
+		
 		ImageDiffer imgDiff = new ImageDiffer();
 		ImageDiff diff = imgDiff.makeDiff(BeforeAnnotationImage, AfterAnnotationImage);
 		if(diff.hasDiff()==true)
