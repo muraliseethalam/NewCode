@@ -5,8 +5,11 @@ package com.edepoze.webapp.pageobjects;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.imageio.ImageIO;
 
@@ -147,10 +150,11 @@ public class NonZoom_Deposition_Session_With_Witness_And_Guest_PageObjects {
 		else {
 			System.out.println("Guest Login Failed");
 		}
-		Firefoxdriver.manage().window().setSize(new Dimension(300, 800));
-		Firefoxdriver.manage().window().setPosition(new Point(900,8));
 		logger.info("Guest logged");
-		logger.info("Browser Minimized");
+
+		//		Firefoxdriver.manage().window().setSize(new Dimension(300, 800));
+		//		Firefoxdriver.manage().window().setPosition(new Point(900,8));
+		//		logger.info("Browser Minimized");
 	}
 
 	public void Guestlogin() {
@@ -181,14 +185,14 @@ public class NonZoom_Deposition_Session_With_Witness_And_Guest_PageObjects {
 
 	public void ClickOnOfficialExhibit() {
 		driver.findElement(ClickOnOfficialExhibits).click();
-		logger.info("Clicked the official join button");
+		logger.info("Clicked the official exhibits button");
 
 	}
 
 	public void Witnesslogin() {
-		driver.manage().window().setSize(new Dimension(300, 800));
-		driver.manage().window().setPosition(new Point(5,5));
-		logger.info("Browser minimized");
+		//		driver.manage().window().setSize(new Dimension(300, 800));
+		//		driver.manage().window().setPosition(new Point(5,5));
+		//		logger.info("Browser minimized");
 
 
 
@@ -209,7 +213,7 @@ public class NonZoom_Deposition_Session_With_Witness_And_Guest_PageObjects {
 			EdgeOptions options = new EdgeOptions();
 			options.addArguments("-inprivate");
 			Incognitodriver=new EdgeDriver(options);
-			logger.info("edege browser launched");
+			logger.info("Edge browser launched");
 		}
 	}
 
@@ -241,7 +245,7 @@ public class NonZoom_Deposition_Session_With_Witness_And_Guest_PageObjects {
 			driver.switchTo().defaultContent();
 			if(driver.findElement(ClickOnBeginSessionOk).isDisplayed()) {
 				driver.findElement(ClickOnBeginSessionOk).click();	
-				logger.info("Clicked the begin session ok button");
+				logger.info("Clicked the ok button");
 			}
 
 		} catch (Exception e) {
@@ -306,14 +310,14 @@ public class NonZoom_Deposition_Session_With_Witness_And_Guest_PageObjects {
 	}
 	public void ClickOnLogin() throws InterruptedException {
 		Incognitodriver.findElement(ClickOnLogin).click();
-		logger.info("Clicked the log in button");
+		logger.info("Clicked the login button");
 
 	}
 	public void AcceptWitnesslogin() throws InterruptedException {
 		Thread.sleep(4000);
 		if(Incognitodriver.findElement(Waitingforauthorisation).isDisplayed()) {
 			driver.findElement(AccepetWitnesslogin).click();
-			logger.info("Clicked the accepet witness button");
+			logger.info("Clicked the accept witness button");
 		}
 		Thread.sleep(2000);
 		if(Incognitodriver.findElement(By.xpath("//div[@class='logout_btn']")).isDisplayed()) {
@@ -322,21 +326,22 @@ public class NonZoom_Deposition_Session_With_Witness_And_Guest_PageObjects {
 		else {
 			System.out.println("Witness Login Failed");
 		}
-		Incognitodriver.manage().window().setSize(new Dimension(300, 800));
-		Incognitodriver.manage().window().setPosition(new Point(500,10));
 		logger.info("Witness logged");
-		logger.info("Browser minimized");
+
+		//		Incognitodriver.manage().window().setSize(new Dimension(300, 800));
+		//		Incognitodriver.manage().window().setPosition(new Point(500,10));
+		//		logger.info("Browser minimized");
 	}
 
 	public void ClickOnOfficialExhibits() {
 		driver.switchTo().frame(0);
 		driver.findElement(ClickOnOfficialExhibits).click();
-		logger.info("Clicked the officeal exhibits");
+		logger.info("Clicked the official exhibits");
 	}
 	public void ClickOnOfficialExhibitFolder() {
 		//driver.switchTo().frame(0);
 		driver.findElement(ClickOnOfficialExhibits).click();
-		logger.info("Clicked the officeal exhibits folder");
+		logger.info("Clicked the official exhibits folder");
 	}
 	public void VerifyIntorduceGuestDocuments() throws InterruptedException {
 
@@ -364,10 +369,10 @@ public class NonZoom_Deposition_Session_With_Witness_And_Guest_PageObjects {
 		Thread.sleep(2000);
 		Assert.assertEquals(MemberCount, WitnesCount);
 		System.out.println("Interduce Documents Are Same");
-		Firefoxdriver.manage().window().setSize(new Dimension(300, 800));
-		Firefoxdriver.manage().window().setPosition(new Point(900,8));
+		//		Firefoxdriver.manage().window().setSize(new Dimension(300, 800));
+		//		Firefoxdriver.manage().window().setPosition(new Point(900,8));
 		logger.info("Browser minimized");
-		logger.info("Verified intorduce guest documents");
+		logger.info("Verified introduce guest documents");
 	}
 
 	public void VerifyIntroduceDocuments() throws InterruptedException {
@@ -393,6 +398,7 @@ public class NonZoom_Deposition_Session_With_Witness_And_Guest_PageObjects {
 		System.out.println("Witness Introduce Documents Count is: " +WitnesCount);
 		Screenshots.usernamescreenshot(Incognitodriver, "DepositionSessionWithWitnessAndGuest");
 		logger.info("Captured screenshot");
+
 		WitnessIntrouduceDocumentNames.removeAll(MemberIntrouduceDocumentNames);
 		Assert.assertEquals(WitnessIntrouduceDocumentNames, WitnessIntrouduceDocumentNames1);
 		System.out.println("Introduce Documents Are Same");
@@ -449,8 +455,8 @@ public class NonZoom_Deposition_Session_With_Witness_And_Guest_PageObjects {
 
 
 		}
-		Incognitodriver.manage().window().setSize(new Dimension(300, 800));
-		Incognitodriver.manage().window().setPosition(new Point(500,10));
+		//		Incognitodriver.manage().window().setSize(new Dimension(300, 800));
+		//		Incognitodriver.manage().window().setPosition(new Point(500,10));
 		logger.info("Browser minimized");
 
 		driver.switchTo().defaultContent();
@@ -471,7 +477,7 @@ public class NonZoom_Deposition_Session_With_Witness_And_Guest_PageObjects {
 
 			System.out.println("Failed To Save Witness Documents");
 		}
-		logger.info("verified witness saved documents");
+		logger.info("Verified witness saved documents");
 	}
 
 	public void DocumentsPresentationFolder() throws InterruptedException {
@@ -483,9 +489,9 @@ public class NonZoom_Deposition_Session_With_Witness_And_Guest_PageObjects {
 	public void DocumentsPresentation() throws InterruptedException {
 		Thread.sleep(1000);
 		int Doucmentssize=driver.findElements(DocumentsPresentation).size();
-		for(int i=0; i<Doucmentssize; i++) {
-			int size=i+1;
-			driver.findElement(By.xpath("(//p[@class='fileName'][contains(text(), '.pdf')])["+size+"]")).click();
+//		for(int i=0; i<Doucmentssize; i++) {
+//			int size=i+1;
+			driver.findElement(By.xpath("(//p[@class='fileName'][contains(text(), '.pdf')])[1]")).click();
 			driver.switchTo().defaultContent();  
 			driver.findElement(WaitUntilDocumentsload);
 			driver.findElement(ClickOnPresentation).click();
@@ -640,15 +646,17 @@ public class NonZoom_Deposition_Session_With_Witness_And_Guest_PageObjects {
 		}
 
 
-	}
+//	}
 	By ClickOnChatToggle=By.xpath("//div[@id='attendee_list_toggle']");
 	By ClickOnGuest=By.xpath("//div[text()='Guest Test']");
 	By SendMessage=By.name("chatentry");
 	By ClickMembrMessage=By.xpath("(//div[@class='attendee_name'])[1]");
 	public void AnnotationsValidation() throws IOException {
-		BufferedImage BeforeAnnotationImage = ImageIO.read(new File(System.getProperty("user.dir") +"\\Screenshots\\Member Annotations.png"));
-		BufferedImage AfterAnnotationImage = ImageIO.read(new File(System.getProperty("user.dir") +"\\Screenshots\\Witness Annotations.png"));
-
+		SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMMyyyy", Locale.ENGLISH);
+		Date currentDate = new Date();
+		String folderName = dateFormat.format(currentDate);
+		BufferedImage BeforeAnnotationImage = ImageIO.read(new File(System.getProperty("user.dir") +"\\Screenshots\\"+folderName+"\\"+"Member Annotations.png"));
+		BufferedImage AfterAnnotationImage = ImageIO.read(new File(System.getProperty("user.dir") +"\\Screenshots\\"+folderName+"\\"+"Witness Annotations.png"));
 
 		ImageDiffer imgDiff = new ImageDiffer();
 		ImageDiff diff = imgDiff.makeDiff(BeforeAnnotationImage, AfterAnnotationImage);

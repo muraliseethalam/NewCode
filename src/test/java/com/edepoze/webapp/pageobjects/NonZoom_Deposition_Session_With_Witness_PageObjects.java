@@ -7,8 +7,11 @@ package com.edepoze.webapp.pageobjects;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.imageio.ImageIO;
 
@@ -230,7 +233,7 @@ public class NonZoom_Deposition_Session_With_Witness_PageObjects {
 		logger.info("Clicked the login button");
 		Incognitodriver.manage().window().setSize(new Dimension(680, 900));
 		Incognitodriver.manage().window().setPosition(new Point(700,10));
-		logger.info("Browser minizied");
+		logger.info("Browser minimized");
 
 	}
 	public void AcceptWitnesslogin() throws InterruptedException {
@@ -272,7 +275,7 @@ public class NonZoom_Deposition_Session_With_Witness_PageObjects {
 		WitnessIntrouduceDocumentNames.removeAll(MemberIntrouduceDocumentNames);
 		Assert.assertEquals(WitnessIntrouduceDocumentNames, WitnessIntrouduceDocumentNames1);
 		System.out.println("Introduce Documents Are Same");
-		logger.info("verified introduce documents");
+		logger.info("Verified introduced documents");
 	}
 
 	public void WitenessAnnotationChangeDocuments() throws InterruptedException {
@@ -339,7 +342,7 @@ public class NonZoom_Deposition_Session_With_Witness_PageObjects {
 
 			System.out.println("Failed To Save Witness Documents");
 		}
-		logger.info("verified witness saved documents");
+		logger.info("Verified witness saved documents");
 
 	}
 	public void DocumentsPresentationFolder() throws InterruptedException {
@@ -351,9 +354,9 @@ public class NonZoom_Deposition_Session_With_Witness_PageObjects {
 	public void DocumentsPresentation() throws InterruptedException {
 		Thread.sleep(1000);
 		int Doucmentssize=driver.findElements(DocumentsPresentation).size();
-		for(int i=0; i<Doucmentssize; i++) {
-			int size=i+1;
-			driver.findElement(By.xpath("(//p[@class='fileName'][contains(text(), '.pdf')])["+size+"]")).click();
+//		for(int i=0; i<Doucmentssize; i++) {
+//			int size=i+1;
+			driver.findElement(By.xpath("(//p[@class='fileName'][contains(text(), '.pdf')])[1]")).click();
 			driver.switchTo().defaultContent();  
 			driver.findElement(WaitUntilDocumentsload);
 			driver.findElement(ClickOnPresentation).click();
@@ -438,7 +441,7 @@ public class NonZoom_Deposition_Session_With_Witness_PageObjects {
 			//			ShowThumbnails Annotations
 			driver.findElement(ClickOnShowThumbnails).click();
 			Thread.sleep(1000);
-			logger.info("Clicked the shoe thimbnails annotations");
+			logger.info("Clicked the show thumbnails annotations");
 			driver.switchTo().frame(0);
 			driver.switchTo().frame(0);
 			Thread.sleep(2000);
@@ -470,7 +473,7 @@ public class NonZoom_Deposition_Session_With_Witness_PageObjects {
 
 			driver.findElement(PausePresentation).click();
 			Thread.sleep(2000);
-			logger.info("Clicked the pause presentation");
+			logger.info("Clicked the pause presentation button");
 			//PencilColor Annotations
 
 			driver.findElement(ClickOnPencilColor).click();
@@ -487,7 +490,7 @@ public class NonZoom_Deposition_Session_With_Witness_PageObjects {
 			driver.switchTo().defaultContent();
 			driver.findElement(PlayPresentatiom).click();
 			Thread.sleep(2000);
-			logger.info("Clicked the play presenation button");
+			logger.info("Clicked the play presentation button");
 
 			driver.findElement(PassAnnotationRole).click();
 			Thread.sleep(2000);
@@ -506,6 +509,7 @@ public class NonZoom_Deposition_Session_With_Witness_PageObjects {
 			Thread.sleep(2000);
 			Incognitodriver.switchTo().defaultContent();
 			Incognitodriver.findElement(ClickOnPencilColor).click();
+			logger.info("Clicked the highlight color annotation");
 			Thread.sleep(1000);
 			logger.info("Document marked");
 			Incognitodriver.switchTo().frame(0);
@@ -532,12 +536,15 @@ public class NonZoom_Deposition_Session_With_Witness_PageObjects {
 		}
 
 
-	}
+//	}
 
 	public void AnnotationsValidation() throws IOException {
-		BufferedImage BeforeAnnotationImage = ImageIO.read(new File(System.getProperty("user.dir") +"\\Screenshots\\Member Annotations.png"));
-		BufferedImage AfterAnnotationImage = ImageIO.read(new File(System.getProperty("user.dir") +"\\Screenshots\\Witness Annotations.png"));
-
+		
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMMyyyy", Locale.ENGLISH);
+         Date currentDate = new Date();
+         String folderName = dateFormat.format(currentDate);
+		BufferedImage BeforeAnnotationImage = ImageIO.read(new File(System.getProperty("user.dir") +"\\Screenshots\\"+folderName+"\\"+"Member Annotations.png"));
+		BufferedImage AfterAnnotationImage = ImageIO.read(new File(System.getProperty("user.dir") +"\\Screenshots\\"+folderName+"\\"+"Witness Annotations.png"));
 
 		ImageDiffer imgDiff = new ImageDiffer();
 		ImageDiff diff = imgDiff.makeDiff(BeforeAnnotationImage, AfterAnnotationImage);

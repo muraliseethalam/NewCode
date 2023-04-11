@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
 import org.testng.ITestContext;
@@ -26,10 +27,23 @@ public class ExtentReport extends TestListenerAdapter {
 	public ExtentTest logger;
 	 OutputData report=new OutputData();
 	public void onStart(ITestContext testContext) {
+		
+//		/ Create folder with current date
+		SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMMyyyy", Locale.ENGLISH);
+		Date currentDate = new Date();
+		String folderName = dateFormat.format(currentDate);
+		String folderPath = System.getProperty("user.dir") + "/Automation Testing Report/" + folderName;
+		File folder = new File(folderPath);
+		if (!folder.exists()) {
+		    folder.mkdirs();
+		}
+		
+		
+		
 		String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 		String repName = obj.Environment()+"_automation_test_report " + timeStamp + ".html";
-		htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/Automation Testing Report/" + repName);
-		String report1= System.getProperty("user.dir") + "/Automation Testing Report/" + repName;
+		htmlReporter = new ExtentHtmlReporter(folderPath +"//"+ repName);
+		String report1= System.getProperty(folderPath +"//"+ repName);
 		
 		try {
 			report.WriteExcel("Sheet1", report1, 12, 1);
@@ -37,22 +51,24 @@ public class ExtentReport extends TestListenerAdapter {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		htmlReporter.loadXMLConfig(System.getProperty("user.dir") + "/extentreportconfiguration.xml");
 		extent = new ExtentReports();
 		extent.attachReporter(htmlReporter);
 		extent.setSystemInfo("Host name", "MuraliKrishna & IndiraSai");
 		extent.setSystemInfo("Environment", "eDepoze " +obj.Environment()+ " Environment");
 		extent.setSystemInfo("User", "MuraliKrishna & IndiraSai");
-		htmlReporter.config().setDocumentTitle("eDepoze Automation"); 
-		htmlReporter.config().setReportName("Functional Automation Testing Report"); 
-		htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP); 
+		htmlReporter.config().setDocumentTitle("eDepoze Automation");
+		htmlReporter.config().setReportName("Functional Automation Testing Report");
+		htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);
 		htmlReporter.config().setTheme(Theme.DARK);
 	}
 	public void onTestSuccess(ITestResult tr) {
-		logger = extent.createTest(tr.getName()); 
-		logger.log(Status.PASS, MarkupHelper.createLabel(tr.getName(), ExtentColor.GREEN)); 
-		String screenshotPath = System.getProperty("user.dir") + "\\Screenshots\\" + tr.getName() + ".png";
+		SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMMyyyy", Locale.ENGLISH);
+        Date currentDate = new Date();
+        String folderName = dateFormat.format(currentDate);
+		logger = extent.createTest(tr.getName());
+		logger.log(Status.PASS, MarkupHelper.createLabel(tr.getName(), ExtentColor.GREEN));
+		String screenshotPath = System.getProperty("user.dir") + "\\Screenshots\\" +folderName+"\\"+ tr.getName() + ".png";
 		File f = new File(screenshotPath);
 		if (f.exists()) {
 			try {
@@ -64,9 +80,12 @@ public class ExtentReport extends TestListenerAdapter {
 		}
 	}
 	public void onTestFailure(ITestResult tr) {
-		logger = extent.createTest(tr.getName()); 
+		SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMMyyyy", Locale.ENGLISH);
+        Date currentDate = new Date();
+        String folderName = dateFormat.format(currentDate);
+		logger = extent.createTest(tr.getName());
 		logger.log(Status.FAIL, MarkupHelper.createLabel(tr.getName(), ExtentColor.RED)); 																				
-		String screenshotPath = System.getProperty("user.dir") + "\\Screenshots\\" + tr.getName() + ".png";
+		String screenshotPath = System.getProperty("user.dir") + "\\Screenshots\\" +folderName+"\\"+ tr.getName() + ".png";
 		File f = new File(screenshotPath);
 		if (f.exists()) {
 			try {
@@ -79,7 +98,10 @@ public class ExtentReport extends TestListenerAdapter {
 	}
 	
 public  String screenshotbase64(ITestResult tr) throws FileNotFoundException, IOException {
-		String path=System.getProperty("user.dir")+"\\Screenshots\\"+tr.getName()+".png";
+	SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMMyyyy", Locale.ENGLISH);
+    Date currentDate = new Date();
+    String folderName = dateFormat.format(currentDate);
+		String path=System.getProperty("user.dir")+"\\Screenshots\\"+folderName+"\\"+tr.getName()+".png";
 		byte[] Image=IOUtils.toByteArray(new FileInputStream(path));
 		return Base64.encodeBase64String(Image).toString();
 	}
